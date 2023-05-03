@@ -15,9 +15,12 @@
 
     <!-- Custom styles for this template -->
     <link href="../assets/css/sign-in.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+        integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
 </head>
 
-<body class="container bg-success">
+<body class="container background_template">
 
     <section class="vh-100">
         <div class="container py-5 h-100">
@@ -40,8 +43,8 @@
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="form1Example23" class="form-control form-control-lg" />
-                                <label class="form-label" for="form1Example23">Password</label>
+                                <input type="password" id="password" class="form-control form-control-lg" />
+                                <label class="form-label" for="password">Password</label>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -55,7 +58,8 @@
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-success form-control btn-lg btn-block mb-4">Sign
+                            <button type="button" class="btn background_template form-control btn-lg btn-block mb-4"
+                                onclick="login()">Sign
                                 in</button>
 
                             <div class="text-center mb-4">
@@ -118,8 +122,12 @@
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
+        integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
+
     <!-- Core theme JS-->
-    <script src="../js/petshop-login.js"></script>
+    <script src="../src/js/petshop-login.js"></script>
 
 
 </body>
