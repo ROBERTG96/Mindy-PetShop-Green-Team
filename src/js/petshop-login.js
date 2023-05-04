@@ -1,8 +1,8 @@
-console.log('CARGANDO LOGIN');
 let adminUser = 'admin'
 let passwordUser = '123*'
 let username = document.querySelector('#username');
 let password = document.querySelector('#password');
+
 
 function getUserLogin() {
 
@@ -18,7 +18,7 @@ function getUserLogin() {
         })
 
         setTimeout(() => {
-            window.location = "petshop-home.html"
+            window.location = "petshop-new-products.html"
         }, 1000);
     }
 }
@@ -37,7 +37,7 @@ function login() {
         })
 
         setTimeout(() => {
-            window.location = "petshop-home.html"
+            window.location = "petshop-new-products.html"
         }, 1000);
 
         localStorage.setItem('username', JSON.stringify(username.value));
@@ -71,6 +71,6 @@ function logout() {
     })
 
     setTimeout(() => {
-        window.location = "petshop-products.html"
+        window.location = "petshop-home.html"
     }, 1000);
 }
