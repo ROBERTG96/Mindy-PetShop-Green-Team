@@ -139,15 +139,21 @@
 
                                         <div class="row">
                                             <div class="col-md">
-                                                    <button type="button"
-                                                        class="btn btn-success form-control btn-lg btn-block my-2 mb-4"
-                                                        onclick="NuevoProducto()">Nuevo Producto!</button>
+                                                <a type="button" data-toggle="tooltip" 
+                                                title="Registrar Producto" data-bs-placement="bottom" 
+                                                    class="btn btn-success form-control btn-lg btn-block my-2 mb-4"
+                                                    onclick="NuevoProducto()">
+                                                    <i class="fa-solid fa-paper-plane fa-2x"></i>
+                                                </a>
                                             </div>
                                             <div class="col-md">
-                                                    <button type="button"
-                                                        class="btn btn-warning form-control btn-lg btn-block my-2 mb-4"
-                                                        onclick="LimpiarFormulario()">Limpiar Formulario.</button>
-                                                </div>
+                                                <a type="button" data-toggle="tooltip"data-bs-placement="bottom" 
+                                                    title="Limpiar Formulario"
+                                                    class="btn btn-danger form-control btn-lg btn-block my-2 mb-4"
+                                                    onclick="LimpiarFormulario()">
+                                                    <i class="fa-solid fa-eraser fa-2x"></i>
+                                                </a>
+                                            </div>
                                         </div>
 
 
@@ -221,12 +227,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
         integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <!-- Core theme JS-->
     <script src="../src/js/template_scripts.js"></script>
     <script src="../src/js/petshop-new-products.js"></script>
 
-
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
 </body>
 
