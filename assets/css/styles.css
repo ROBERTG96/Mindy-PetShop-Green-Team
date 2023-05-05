@@ -2,6 +2,7 @@
     --main-bg-color: #5EAE9E;
     --secondary-color: #70E000;
     --text-color: #33691E;
+    --green-accent: #8BC34A;
 }
 
 /* Navbar */
@@ -10,6 +11,9 @@
     background-color: var(--main-bg-color);
 }
 
+.color_primary{
+    background-color: var(--main-bg-color);
+}
 .nav-link {
     color: var(--text-color);
     font-weight: 600;
@@ -25,6 +29,13 @@ a {
     cursor: pointer;
 }
 
+.logo{
+    height: 12rem;
+}
+
+.logoSidebar{
+    height: 8rem;
+}
 
 /* Fin Navbar */
 
@@ -63,14 +74,21 @@ a {
     max-height: 150px;
     overflow-y: auto;
 }
+.btn-icon{
+    color: var(--main-bg-color);
+}
 
-.card-body {
-    background-color: #f2f2f2;
+.btn-success{
+    background: var(--main-bg-color) !important;
 }
 
 .btn-primary {
     background-color: #007bff;
     border: none;
+}
+
+.btn-stock{
+    background-color: #FFA500!important;;
 }
 
 .btn-primary:hover {

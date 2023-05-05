@@ -28,7 +28,7 @@ async function NuevoProducto() {
     })
         .then(async res => {
             if (res.status <= 201) {
-              
+
                 document.getElementById("FormRegistroProducto").reset();
                 document.getElementsByName('nombre')[0].focus();
                 Swal.fire({
@@ -39,11 +39,11 @@ async function NuevoProducto() {
                 })
                 return await res.json();
 
-            }else {
+            } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Ocurrió un error en el proceso de registro.',
-                    text:  'Verifica que los campos no estėn vacíos.',
+                    text: 'Verifica que los campos no estėn vacíos.',
                     timer: 3000
                 })
             }

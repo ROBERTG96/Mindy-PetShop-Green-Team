@@ -7,19 +7,22 @@ let password = document.querySelector('#password');
 function getUserLogin() {
 
     let user = localStorage.getItem('username');
+    let rutaLogin = window.location.pathname;
 
-    if (user) {
-        Swal.fire({
-            title: 'Info!',
-            text: 'Ya tienes una sesión iniciada, redireccionando!',
-            icon: 'info',
-            confirmButtonText: 'Ok',
-            timer: 5000,
-        })
+    if (rutaLogin === '/src/petshop-login.html') {
+        if (user) {
+            Swal.fire({
+                icon: 'info',
+                title: '¡Eres el Administrador!',
+                text: 'Ya tienes una sesión iniciada, redireccionando!',
+                confirmButtonText: 'Ok',
+                timer: 3000,
+            })
 
-        setTimeout(() => {
-            window.location = "petshop-new-products.html"
-        }, 1000);
+            setTimeout(() => {
+                window.location = "petshop-new-products.html"
+            }, 2000);
+        }
     }
 }
 
@@ -59,18 +62,5 @@ function login() {
     }
 }
 
-function logout() {
-    localStorage.clear('username');
 
-    Swal.fire({
-        title: 'Info!',
-        text: 'Cerrando sesión, redireccionando!',
-        icon: 'info',
-        confirmButtonText: 'Ok',
-        timer: 3000,
-    })
 
-    setTimeout(() => {
-        window.location = "petshop-home.html"
-    }, 1000);
-}

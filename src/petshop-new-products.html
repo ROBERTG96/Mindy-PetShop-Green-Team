@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>PetShop - Mindy</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/assets/css/template.css" rel="stylesheet" />
     <link href="/assets/css/styles.css" rel="stylesheet" />
@@ -27,21 +27,26 @@
         <!-- Sidebar-->
         <div class="border-end" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom  background-template">
-                <h4>Mindy</h4>
+                <div class="text-center">
+                    <img src="../assets/img/logo.png" class="logoSidebar" alt="logo">
+                </div>
             </div>
             <div class="list-group list-group-flush">
+                <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-home.html"
+                    data-toggle="tooltip" title="Inicio" data-bs-placement="right"><i
+                        class="fa-solid fa-home btn-icon"></i> Inicio</a>
+                <a class="list-group-item  list-group-item-action list-group-item-light p-3"
+                    href="./petshop-products.html" data-toggle="tooltip" title="Productos" data-bs-placement="right"><i
+                        class="fa-solid fa-store btn-icon"></i> Tienda</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-cart.html"
+                    data-toggle="tooltip" title="Carrito de compras" data-bs-placement="right"><i
+                        class="fa-solid fa-cart-shopping btn-icon"></i> Carrito</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                    href="./petshop-dashboard.html">Dashboard</a>
+                    href="./petshop-contact.html" data-toggle="tooltip" title="Contacto" data-bs-placement="right"><i
+                        class="fa-solid fa-address-book btn-icon"></i> Contactanos</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                    href="./petshop-store.html">Store</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                    href="./petshop-products.html">Products</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                    href="./petshop-cart.html">Shopping Cart</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                    href="./petshop-contact.html">Contact</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                    href="./petshop-aboutUs.html">About Us</a>
+                    href="./petshop-aboutUs.html" data-toggle="tooltip" title="Sobre nosotros"
+                    data-bs-placement="right"><i class="fa-solid fa-address-card btn-icon"></i> Sobre Nosotros</a>
 
             </div>
         </div>
@@ -58,24 +63,29 @@
                             class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-home.html"
+                                    data-toggle="tooltip" title="Inicio" data-bs-placement="bottom"><i
+                                        class="fa-solid fa-house"></i></a>
+                            </li>
+                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-products.html"><i
+                                        class="fa-solid fa-store" href="./petshop-products.html" data-toggle="tooltip"
+                                        title="Tienda" data-bs-placement="bottom"></i></a></li>
                             <li class="nav-item active"><a class="nav-link text-light" href="#!"><i
-                                        class="fa-solid fa-house"></i></a></li>
-                            <li class="nav-item active"><a class="nav-link text-light" href="#!"><i
-                                        class="fa-solid fa-store"></i></a></li>
-                            <li class="nav-item active"><a class="nav-link text-light" href="#!"><i
-                                        class="fa-solid fa-cart-shopping"></i></a></li>
+                                        class="fa-solid fa-cart-shopping" href="./petshop-products.html"
+                                        data-toggle="tooltip" title="Carrito" data-bs-placement="bottom"></i></a></li>
                             <li class="nav-item active">
-                                <a class="nav-link text-light" href="#!"> <i class="fa-solid fa-address-book"></i>
+                                <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto"
+                                    data-bs-placement="bottom"> <i class="fa-solid fa-address-book"></i>
                                 </a>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#"
                                     role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i> </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="./petshop-login.html">Login</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" onclick="logout()">Cerrar Sesión</a>
+                                    aria-expanded="false"><i class="fa-solid fa-user-shield"></i> </a>
+                                <div class="dropdown-menu dropdown-menu-end" id="mostrar"
+                                    aria-labelledby="navbarDropdown">
+
                                 </div>
                             </li>
                         </ul>
@@ -85,15 +95,13 @@
             <!-- Page content-->
             <div class="container-flex">
                 <div class="card-body">
-                    <h1 class="mt-2 text-center">Mindy PetShop</h1>
                     <div class="container py-3 h-100">
                         <div class="row d-flex align-items-center justify-content-center h-100">
                             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 text-dark">
                                 <div class="card shadow p-4 rounded-4">
                                     <form action="petshop-new-products.html" id="FormRegistroProducto" method="post">
-                                        <div class="rounded-circle">
-                                            <img src="../assets/img/logo.png" class="img-fluid  shadow rounded-circle"
-                                                alt="logo">
+                                        <div class="text-center">
+                                            <img src="../assets/img/logo.png" class="logoSidebar" alt="logo">
                                         </div>
 
                                         <div class="form-floating my-2 mb-2">
@@ -139,15 +147,15 @@
 
                                         <div class="row">
                                             <div class="col-md">
-                                                <a type="button" data-toggle="tooltip" 
-                                                title="Registrar Producto" data-bs-placement="bottom" 
+                                                <a type="button" data-toggle="tooltip" title="Registrar Producto"
+                                                    data-bs-placement="bottom"
                                                     class="btn btn-success form-control btn-lg btn-block my-2 mb-4"
                                                     onclick="NuevoProducto()">
                                                     <i class="fa-solid fa-paper-plane fa-2x"></i>
                                                 </a>
                                             </div>
                                             <div class="col-md">
-                                                <a type="button" data-toggle="tooltip"data-bs-placement="bottom" 
+                                                <a type="button" data-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Limpiar Formulario"
                                                     class="btn btn-danger form-control btn-lg btn-block my-2 mb-4"
                                                     onclick="LimpiarFormulario()">
@@ -224,6 +232,7 @@
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
 
+    <!-- SweetAlert2 JS-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
         integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
 
