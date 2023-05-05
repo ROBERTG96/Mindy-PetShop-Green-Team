@@ -1,0 +1,20 @@
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #5EAE9E;
+}
+
+.background_template{
+    background: #5EAE9E;
+
+}
+
+:root {
+    --green-primary: #5EAE9E;
+    --green-secondary: #81C784;
+    --green-accent: #8BC34A;
+    --green-dark: #33691E;
+    --green-light: #E8F5E9;
+  }

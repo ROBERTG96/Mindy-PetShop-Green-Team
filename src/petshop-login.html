@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>PetShop - Mindy</title>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../assets/css/template.css" rel="stylesheet" />
+    <link href="../assets/css/styles.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/sign-in.css" rel="stylesheet">
+
+    <!-- FontAwesome-->
+    <script src="https://kit.fontawesome.com/ff48e921d3.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+        integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+</head>
+
+<body class="container-flex background_template">
+    <!-- Top navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item active"><a class="nav-link text-light" href="./petshop-home.html"
+                            data-toggle="tooltip" title="Inicio" data-bs-placement="bottom"><i
+                                class="fa-solid fa-house"></i></a>
+                    </li>
+                    <li class="nav-item active"><a class="nav-link text-light" href="./petshop-products.html"
+                            data-toggle="tooltip" title="Tienda" data-bs-placement="bottom"><i
+                                class="fa-solid fa-store"></i></a></li>
+                    <li class="nav-item active"><a class="nav-link text-light" href="./petshop-shopping-card.html"
+                            data-toggle="tooltip" title="Carrito" data-bs-placement="bottom"><i
+                                class="fa-solid fa-cart-shopping"></i></a></li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto"
+                            data-bs-placement="bottom"> <i class="fa-solid fa-address-book"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                class="fa-solid fa-user-shield"></i> </a>
+                        <div class="dropdown-menu dropdown-menu-end" id="mostrar" aria-labelledby="navbarDropdown">
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="vh-100">
+        <div class="container py-3 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="../assets/img/logo.png" class="img-fluid" alt="logo">
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 text-light">
+                    <div class="card shadow p-4 rounded-4">
+                        <form>
+                            <div class="text-center">
+                                <img src="../assets/img/logo.png" class="logoSidebar" alt="logo">
+                            </div>
+
+                            <!-- Username input -->
+                            <div class="form-floating my-2 mb-3">
+                                <input type="text" id="username" placeholder="Nombre del producto"
+                                    class="form-control form-control-lg" />
+                                <label class="form-label" for="username">Usuario</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-floating my-2 mb-3">
+                                <input type="password" id="password" placeholder="Nombre del producto"
+                                    class="form-control form-control-lg" />
+                                <label class="form-label" for="password">Contraseña</label>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <!-- Checkbox -->
+                                    <input class="form-check-input" type="checkbox" value="" id="form1Example3"
+                                        checked />
+                                    <label class="form-check-label" for="form1Example3">Recordar contraseña</label>
+                                </div>
+
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="button" class="btn background_template form-control btn-lg btn-block mb-4"
+                                onclick="login()">Login</button>
+
+                            <div class="text-center mb-4">
+                                <p class="text-muted">Otros metodos de inicio de sesión</p>
+                                <footer class="bg-light text-center text-white">
+                                    <!-- Grid container -->
+                                    <div class="container p-4 pb-0">
+                                        <!-- Section: Social media -->
+                                        <section class="mb-4">
+                                            <!-- Facebook -->
+                                            <a class="btn text-white btn-floating m-1"
+                                                style="background-color: #3b5998;" href="#!" role="button"><i
+                                                    class="fab fa-facebook-f"></i></a>
+
+                                            <!-- Twitter -->
+                                            <a class="btn text-white btn-floating m-1"
+                                                style="background-color: #55acee;" href="#!" role="button"><i
+                                                    class="fab fa-twitter"></i></a>
+
+                                            <!-- Instagram -->
+                                            <a class="btn text-white btn-floating m-1"
+                                                style="background-color: #ac2bac;" href="#!" role="button"><i
+                                                    class="fab fa-instagram"></i></a>
+
+                                            <!-- Linkedin -->
+                                            <a class="btn text-white btn-floating m-1"
+                                                style="background-color: #0082ca;" href="#!" role="button"><i
+                                                    class="fab fa-linkedin-in"></i></a>
+                                            <!-- Github -->
+                                            <a class="btn text-white btn-floating m-1"
+                                                style="background-color: #333333;" href="#!" role="button"><i
+                                                    class="fab fa-github"></i></a>
+                                        </section>
+                                        <!-- Section: Social media -->
+                                    </div>
+                                    <!-- Grid container -->
+                                </footer>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 shadow text-light">
+        <div class="container-flex">
+            <div class="row text-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4 text-light">Redes sociales</h4>
+                    <ul class="list-inline">
+                        <li class="list-inline-item my-3">
+                            <a href="#" class=" ">
+                                <i class="fab fa-facebook fa-lg text-light"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item my-3">
+                            <a href="#" class=" ">
+                                <i class="fab fa-twitter fa-lg text-light"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item my-3">
+                            <a href="#" class=" ">
+                                <i class="fab fa-instagram fa-lg text-light"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item my-3">
+                            <a href="#" class=" ">
+                                <i class="fab fa-linkedin fa-lg text-light"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h4 class="text-uppercase mb-4 text-light">Contacto</h4>
+                    <p class="mb-3 text-light"><i class="fas fa-envelope mr-2 text-light"></i>
+                        info@example.com</p>
+                    <p class="mb-0 text-light"><i class="fas fa-phone mr-2 text-light"></i> +1 (555)
+                        123-4567</p>
+                </div>
+            </div>
+            <div class="text-center mt-5 mb-0">
+                <p class="text-light"> © 2023 Green Team - Robert González | Andy Campo | Akwe Ulcue - Todos
+                    los derechos
+                    reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- SweetAlert2 JS-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
+        integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
+
+
+
+    <!-- SweetAlert2 JS-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
+        integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
+
+    <!-- Core theme JS-->
+    <script src="../src/js/template_scripts.js"></script>
+    <script src="../src/js/petshop-login.js"></script>
+    <script src="../src/js/template_scripts.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+</body>
+
+</html>

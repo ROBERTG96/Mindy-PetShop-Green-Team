@@ -1,0 +1,164 @@
+:root {
+    --main-bg-color: #5EAE9E;
+    --secondary-color: #70E000;
+    --text-color: #33691E;
+    --green-accent: #8BC34A;
+}
+
+/* Navbar */
+
+.navbar {
+    background-color: var(--main-bg-color);
+}
+
+.color_primary{
+    background-color: var(--main-bg-color);
+}
+.nav-link {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.logoNavbar {
+    height: 70px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo{
+    height: 12rem;
+}
+
+.logoSidebar{
+    height: 8rem;
+}
+
+/* Fin Navbar */
+
+
+/* Main */
+
+
+/* Cards */
+
+.card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    background-color: #f2f2f2;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    max-height: 150px;
+    overflow-y: auto;
+}
+.btn-icon{
+    color: var(--main-bg-color);
+}
+
+.btn-success{
+    background: var(--main-bg-color) !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-stock{
+    background-color: #FFA500!important;;
+}
+
+.btn-primary:hover {
+    background-color: #0062cc;
+}
+
+.btn-outline-secondary {
+    border: none;
+}
+
+.input-group-text {
+    font-size: 0.9rem;
+    background-color: #f2f2f2;
+    border: none;
+}
+
+
+/* Botón carrito de compras cards */
+
+.btn-primary {
+    background-color: var(--main-bg-color);
+}
+
+.btn-primary:hover {
+    background-color: #006B8E;
+}
+
+
+/* Fin botón carrito de compras cards */
+
+
+/* Fin Main */
+
+
+/* Footer */
+
+footer {
+    background-color: var(--main-bg-color);
+}
+
+footer h4 {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+footer p {
+    color: var(--text-color)
+}
+
+footer a {
+    color: var(--text-color);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+}
+
+.list-inline-item .fab {
+    transition: all 0.3s ease-in-out;
+}
+
+.list-inline-item:hover .fab {
+    transform: scale(1.5);
+}
+
+
+/* Fin footer */
