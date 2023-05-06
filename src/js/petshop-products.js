@@ -1,30 +1,31 @@
 const urlApi = "https://pro-talento.up.railway.app/api/mindy/products";
-let Api = new Array();
+const ordenAsc = '&orden=asc';
+const ordenDesc = '&orden=desc';
+const tipoMedicamento = '?tipo=medicamento';
+const tipoJuguete = '?tipo=juguete';
+
 let ApiMedicamentos = new Array();
 let ApiJuguetes = new Array();
 
 
-async function ApiFetch() {
-  let response = await fetch(urlApi);
+async function ApiFetch(url, tipo, orden) {
+  let response = await fetch(`${url}${tipo}${orden}`);
   response = await response.json();
   return response;
 }
 
-async function getApi(urlApi) {
+async function getApi() {
   try {
-    let response = await fetch(urlApi);
-    response = await response.json();
-    Api = response.products;
-    ApiMedicamentos = response.products.filter(categoria => categoria.tipo === "Medicamento");
-    ApiJuguetes = response.products.filter(categoria => categoria.tipo === "Juguete");
-    getProductsMedicamentos(ApiMedicamentos);
-    getProductsJuguetes(ApiJuguetes);
+    ApiMedicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenAsc);
+    ApiJuguetes = await ApiFetch(urlApi, tipoJuguete, ordenAsc);
+    getProductsMedicamentos(ApiMedicamentos.products);
+    getProductsJuguetes(ApiJuguetes.products);
   } catch (error) {
     console.error(error);
   }
 }
 
-getApi(urlApi);
+getApi();
 
 const cardsContainerMedicamentos = document.getElementById("cards-container-medicamentos");
 const cardsContainerJuguetes = document.getElementById("cards-container-juguetes");
@@ -116,22 +117,22 @@ function resetearTemplateJuguetes() {
   cardsContainerJuguetes.innerHTML = '';
 }
 
+
 async function filtrar_medicamentos() {
 
   let InputSearchMedicamento = document.querySelector('#BuscarMedicamento');
   let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
 
-  let api = await ApiFetch();
-  let medicamentos = api.products.filter(categoria => categoria.tipo === "Medicamento");
+  let api = await ApiFetch(urlApi, tipoMedicamento, ordenAsc);
 
-  let MedicamentosFiltrados = medicamentos.filter(medicamento => {
+  console.log(api);
+
+  let MedicamentosFiltrados = api?.products.filter(medicamento => {
     medicamento.nombre = medicamento.nombre.toLowerCase();
     medicamento.descripcion = medicamento.descripcion.toLowerCase();
 
     return medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1;
   })
-
-  console.log('MedicamentosFiltrados:', MedicamentosFiltrados);
 
   if (MedicamentosFiltrados.length === 0) {
     resetearTemplateMedicamentos();
@@ -149,58 +150,52 @@ async function filtrarPrecios() {
   let maximo = Number(document.querySelector('#precioMaximo').value);
   let desc = document.querySelector('#desc_med');
 
-  if (!minimo) {
+  !minimo ? (
     Swal.fire({
       icon: 'info',
       title: '¡Debes ingresar un precio mínimo!',
       text: 'Para filtrar por precio ambos campos deben contener valores mayor a 0.'
     })
-  } else if (!maximo) {
+  ) : !maximo ? (
     Swal.fire({
       icon: 'info',
       title: '¡Debes ingresar un precio máximo!',
       text: 'Para filtrar por precio ambos campos deben contener valores mayor a 0.'
     })
-  } else if (minimo && maximo) {
+  ) : (
+    minimo, maximo
+  )
+
+  if (minimo && maximo) {
 
     let InputSearchMedicamento = document.querySelector('#BuscarMedicamento');
     let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
     let medicamentos;
 
-    if (desc.checked) {
-      medicamentos = await fetch(`${urlApi}?tipo=medicamento&orden=desc`);
-      medicamentos = await medicamentos.json();
+    desc.checked ? (
+      medicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenDesc)
+    ) : (
+      medicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenAsc)
+    )
 
-    } else {
-      medicamentos = await fetch(`${urlApi}?tipo=medicamento&orden=asc`);
-      medicamentos = await medicamentos.json();
-    }
-
-    let MedicamentosFiltrados = medicamentos.products?.filter(medicamento => {
+    let MedicamentosFiltrados = medicamentos.products.filter(medicamento => {
       medicamento.nombre = medicamento.nombre.toLowerCase();
       medicamento.descripcion = medicamento.descripcion.toLowerCase();
 
       return (medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
     })
 
-    if (MedicamentosFiltrados.length === 0) {
-      resetearTemplateMedicamentos();
-      busquedaMedicamentoNoEncontrada();
-    } else {
-      resetearTemplateMedicamentos();
+    MedicamentosFiltrados.length === 0 ? (
+      resetearTemplateMedicamentos(),
+      busquedaMedicamentoNoEncontrada()
+    ) : (
+      resetearTemplateMedicamentos(),
       getProductsMedicamentos(MedicamentosFiltrados)
-    }
+    )
+
   }
+
 }
-
-async function ordenarPorPrecio(asc, des) {
-  let api = await ApiFetch();
-  let medicamentos = api.products.filter(categoria => categoria.tipo === "Medicamento");
-
-  console.log('ordenando asc:', asc);
-  console.log(medicamentos);
-}
-
 
 function busquedaMedicamentoNoEncontrada() {
   cardsContainerMedicamentos.innerHTML = ''
