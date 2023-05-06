@@ -20,11 +20,11 @@ function MostarAdmin() {
         userAdmin ? (
             mostrar.innerHTML = `
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="./petshop-new-products.html"> <i class="fa-sharp fa-solid fa-file-circle-plus"></i> Nuevo Producto</a>
-        <a class="dropdown-item" onclick="logout()"> <i class="fa-solid fa-door-closed"></i> Cerrar Sesión</a>`
+            <a class="dropdown-item" href="./petshop-new-products.html"> <i class="bi bi-patch-plus-fill btn-icon"></i> Nuevo Producto</a>
+        <a class="dropdown-item" onclick="logout()"> <i class="bi bi-door-closed-fill btn-icon"></i> Cerrar Sesión</a>`
         ) : (
             mostrar.innerHTML = `
-            <a class="dropdown-item" href="./petshop-login.html"> <i class="fa-solid fa-door-open"></i> Iniciar Sesión</a>
+            <a class="dropdown-item" href="./petshop-login.html"> <i class="bi bi-door-open-fill btn-icon"></i> Iniciar Sesión</a>
             <div class="dropdown-divider"></div>
            `
         )
