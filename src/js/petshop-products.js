@@ -110,7 +110,7 @@ function getProductsJuguetes(Juguetes) {
 }
 
 
-let carrito = [];
+let carrito = new Array();
 const numItemsCarrito = document.querySelector('#numItemsCarrito');
 const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
@@ -144,15 +144,21 @@ vaciarCarrito.addEventListener('click', () => {
         }
     });
 });
-
+0
 
 function agregarAlCarrito(idProducto) {
-    const item = Api.find(producto => producto._id === idProducto);
-
-
-    carrito.push(item);
+    const existeProductoEnCarrito = carrito.some(prod => prod._id === idProducto)
+    if (existeProductoEnCarrito) {
+        const productoExistente = carrito.find(prod => prod._id === idProducto);
+        productoExistente.cantidad++;
+    } else {
+        const item = Api.find((prod) => prod._id === idProducto);
+        item.cantidad = 1;
+        carrito.push(item);
+    }
     mostrarCarrito();
 }
+
 
 const mostrarCarrito = () => {
     const modalBody = document.querySelector('.modal .modal-body');
@@ -168,7 +174,7 @@ const mostrarCarrito = () => {
         <div>
             <p>Producto: ${producto.nombre}</p>
             <p>Precio: ${producto.precio}</p>
-            <p>Cantidad: ${producto.stock}</p>
+            <p>Cantidad: ${producto.cantidad}</p>
     
             <button onclick="eliminarProducto('${producto._id}')" class="btn btn-danger mb-4">Eliminar del carrito</button>
         </div>
@@ -182,11 +188,12 @@ const mostrarCarrito = () => {
       </div>`
     }
 
-    precioTotal.textContent = carrito.reduce((acc, prod) => acc + parseFloat(prod.stock) * parseFloat(prod.precio), 0)
+    precioTotal.textContent = carrito.reduce((acc, prod) => acc + parseFloat(prod.cantidad) * parseFloat(prod.precio), 0)
 
     numItemsCarrito.textContent = carrito.length;
     guardarStorage();
 }
+
 
 function eliminarProducto(id) {
     const productId = id;
