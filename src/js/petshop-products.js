@@ -33,38 +33,31 @@ const cardsContainerJuguetes = document.getElementById("cards-container-juguetes
 function getProductsMedicamentos(Medicamentos) {
   Medicamentos.forEach((medicamento) => {
     let card = document.createElement("div");
-    card.className = "col-md-4 mb-4";
+    card.className = "col-md-3 mb-4";
     card.innerHTML = `
-      <div class="card rounded shadow h-100">
-        <img src="${medicamento.imagen}" class="card-img-top" alt="${medicamento.nombre}">
-        <div class="card-body color_primary text-light mb-3">
-        <div class="row">  
-          <h5 class="card-title mb-3">${medicamento.nombre}</h5>
-          </div>
-          <div class="row mb-3">
-            <div class="col-6">
-              <p class="card-text"><i class="fas fa-dollar-sign"></i> ${medicamento.precio}</p>
-            </div>
-            <div class="col-6">
-            <p class="card-text"><i class="fas fa-tags"></i> ${medicamento.tipo}</p>
-          </div>
-          
-          </div>
-          <p class="card-text mb-1">${medicamento.descripcion}</p>
+    <div class="card rounded shadow h-100">
+    <img src="${medicamento.imagen}" class="card-img-top" alt="${medicamento.nombre}">
+    <div class="card-body color_primary text-light mb-3">
+        <div class="row">
+            <span class="card-subtitle font-weight-bold mb-3"><b> ${medicamento.nombre}</b></span>
         </div>
-        <div class="input-group p-2 mb-3">
-        <button class="btn btn-stock font-weight-bold" type="button" id="button-minus-0">-</button>
-        <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cantidad" value="0" id="quantity-0">
-        <button class="btn btn-stock font-weight-bold" type="button" id="button-plus-0">+</button>
-        <span class="input-group-text">Existencias: <span id="stock-0">${medicamento.stock}</span></span>
-       </div>
-
-        <div class="d-flex justify-content-center mb-1">
-            <button type="button" class="btn btn-block btn-light" onclick="agregarAlCarrito(${JSON.stringify(medicamento)})">
-              <i class="fas fa-shopping-cart btn-icon"></i> Agregar al carrito
-            </button>
-          </div>
+        <div class="row mb-3">
+            <p class="card-text mb-1">${medicamento.descripcion}</p>
+        </div>
+    </div>
+    <div class="p-3">
+        <p class="success"><i class="fas fa-tags"></i> ${medicamento.tipo}</p>
+        <p class="success"><i class="bi bi-bag-check-fill"></i> Stock Disponible</p>
+        ${medicamento.stock < 5 ? (
+        `<p class="sucess_dark"><i class="bi bi-box-seam-fill"></i><b> Últimas unidades! (${medicamento.stock})</b></p>`
+      ) : (
+        `<p class="success"><i class="bi bi-box-seam-fill"></i><b> ${medicamento.stock}</b></p>`
+      )}
+        <p class="success"><i class="bi bi-currency-dollar"></i><b>${medicamento.precio}</b></p>
+        <a href="#" class="btn btn-outline form-control mt-3"><i class="fas fa-shopping-cart"></i> Add to
+            Cart</a>
       </div>
+    </div>
     `;
     cardsContainerMedicamentos.appendChild(card);
   });
@@ -73,38 +66,31 @@ function getProductsMedicamentos(Medicamentos) {
 function getProductsJuguetes(Juguetes) {
   Juguetes.forEach((Juguete) => {
     const card = document.createElement("div");
-    card.className = "col-md-4 mb-4";
+    card.className = "col-md-3 mb-4";
     card.innerHTML = `
-      <div class="card rounded shadow h-100">
-        <img src="${Juguete.imagen}" class="card-img-top" alt="${Juguete.nombre}">
-        <div class="card-body color_primary text-light mb-3">
-        <div class="row">  
-          <h5 class="card-title mb-3">${Juguete.nombre}</h5>
-          </div>
-          <div class="row mb-3">
-            <div class="col-6">
-              <p class="card-text"><i class="fas fa-dollar-sign"></i> ${Juguete.precio}</p>
-            </div>
-            <div class="col-6">
-            <p class="card-text"><i class="fas fa-tags"></i> ${Juguete.tipo}</p>
-          </div>
-          
-          </div>
-          <p class="card-text mb-1">${Juguete.descripcion}</p>
+    <div class="card rounded shadow h-100">
+    <img src="${Juguete.imagen}" class="card-img-top" alt="${Juguete.nombre}">
+    <div class="card-body color_primary text-light mb-3">
+        <div class="row">
+            <span class="card-subtitle font-weight-bold mb-3"><b> ${Juguete.nombre}</b></span>
         </div>
-        <div class="input-group p-2 mb-3">
-        <button class="btn btn-stock font-weight-bold" type="button" id="button-minus-0">-</button>
-        <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cantidad" value="0" id="quantity-0">
-        <button class="btn btn-stock font-weight-bold" type="button" id="button-plus-0">+</button>
-        <span class="input-group-text">Existencias: <span id="stock-0">${Juguete.stock}</span></span>
-       </div>
-
-        <div class="d-flex justify-content-center mb-1">
-            <button type="button" class="btn btn-block btn-light" onclick="agregarAlCarrito(${JSON.stringify(Juguete)})">
-              <i class="fas fa-shopping-cart btn-icon"></i> Agregar al carrito
-            </button>
-          </div>
+        <div class="row mb-3">
+            <p class="card-text mb-1">${Juguete.descripcion}</p>
+        </div>
+    </div>
+    <div class="p-3">
+        <p class="success"><i class="fas fa-tags"></i> ${Juguete.tipo}</p>
+        <p class="success"><i class="bi bi-bag-check-fill"></i> Stock Disponible</p>
+        ${Juguete.stock < 5 ? (
+        `<p class="sucess_dark"><i class="bi bi-box-seam-fill"></i><b> Últimas unidades! (${Juguete.stock})</b></p>`
+      ) : (
+        `<p class="success"><i class="bi bi-box-seam-fill"></i><b> ${Juguete.stock}</b></p>`
+      )}
+        <p class="success"><i class="bi bi-currency-dollar"></i><b>${Juguete.precio}</b></p>
+        <a href="#" class="btn btn-outline form-control mt-3"><i class="fas fa-shopping-cart"></i> Add to
+            Cart</a>
       </div>
+    </div>
     `;
     cardsContainerJuguetes.appendChild(card);
   });
@@ -197,6 +183,69 @@ async function filtrarPrecios() {
 
 }
 
+async function filtrarOrdenar() {
+
+  let minimo = Number(document.querySelector('#precioMinimo').value);
+  let maximo = Number(document.querySelector('#precioMaximo').value);
+  let asc = document.querySelector('#asc_med');
+
+  if (minimo && maximo) {
+
+    let InputSearchMedicamento = document.querySelector('#BuscarMedicamento');
+    let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
+    let medicamentos;
+
+    asc.checked ? (
+      medicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenAsc)
+    ) : (
+      medicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenDesc)
+    )
+
+    let MedicamentosFiltrados = medicamentos.products.filter(medicamento => {
+      medicamento.nombre = medicamento.nombre.toLowerCase();
+      medicamento.descripcion = medicamento.descripcion.toLowerCase();
+
+      return (medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
+    })
+
+    MedicamentosFiltrados.length === 0 ? (
+      resetearTemplateMedicamentos(),
+      busquedaMedicamentoNoEncontrada()
+    ) : (
+      resetearTemplateMedicamentos(),
+      getProductsMedicamentos(MedicamentosFiltrados)
+    )
+
+  } else {
+    let InputSearchMedicamento = document.querySelector('#BuscarMedicamento');
+    let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
+    let medicamentos;
+
+    asc.checked ? (
+      medicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenAsc)
+    ) : (
+      medicamentos = await ApiFetch(urlApi, tipoMedicamento, ordenDesc)
+    )
+
+    let MedicamentosFiltrados = medicamentos.products.filter(medicamento => {
+      medicamento.nombre = medicamento.nombre.toLowerCase();
+      medicamento.descripcion = medicamento.descripcion.toLowerCase();
+
+      return (medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1);
+    })
+
+    MedicamentosFiltrados.length === 0 ? (
+      resetearTemplateMedicamentos(),
+      busquedaMedicamentoNoEncontrada()
+    ) : (
+      resetearTemplateMedicamentos(),
+      getProductsMedicamentos(MedicamentosFiltrados)
+    )
+  }
+
+}
+
+
 function busquedaMedicamentoNoEncontrada() {
   cardsContainerMedicamentos.innerHTML = ''
   cardsContainerMedicamentos.innerHTML = `<div class="d-flex shadow align-items-center justify-content-center ">
@@ -210,4 +259,155 @@ function busquedaMedicamentoNoEncontrada() {
   </div>
 </div>
   `
+}
+// JS JUGUETES
+
+function busquedaJugueteNoEncontrada() {
+  cardsContainerMedicamentos.innerHTML = ''
+  cardsContainerMedicamentos.innerHTML = `<div class="d-flex shadow align-items-center justify-content-center ">
+  <div class="text-center mb-3">
+      <h5 class="display-1 text-danger">Productos no encontrados</h5>
+      <p class="fs-3 text-dark"> <span class="text-danger">¡</span> La busqueda no funcionó <span class="text-danger">!</span></p>
+      <p class="lead text-dark">
+          No se encontraron medicamentos registrados en la aplicación por este criterio.
+        </p>
+      <a href="./petshop-new-products.html" class="btn btn-success bg-2">Registrar Nuevo Producto</a>
+  </div>
+</div>
+  `
+}
+
+async function filtrar_juguetes() {
+
+  let InputSearchJuguetes = document.querySelector('#BuscarJuguetes');
+  let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
+
+  let api = await ApiFetch(urlApi, tipoJuguete, ordenAsc);
+
+  let JuguetesFiltrados = api?.products.filter(juguete => {
+    juguete.nombre = juguete.nombre.toLowerCase();
+    juguete.descripcion = juguete.descripcion.toLowerCase();
+
+    return juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1;
+  })
+
+  if (JuguetesFiltrados.length === 0) {
+    resetearTemplateJuguetes();
+    busquedaJugueteNoEncontrada();
+  } else {
+    resetearTemplateJuguetes();
+    getProductsJuguetes(JuguetesFiltrados)
+  }
+
+}
+
+async function filtrarPreciosJuguete() {
+
+  let minimo = Number(document.querySelector('#precioMinimoJuguete').value);
+  let maximo = Number(document.querySelector('#precioMaximoJuguete').value);
+  let desc = document.querySelector('#desc_jug');
+
+  !minimo ? (
+    Swal.fire({
+      icon: 'info',
+      title: '¡Debes ingresar un precio mínimo!',
+      text: 'Para filtrar por precio ambos campos deben contener valores mayor a 0.'
+    })
+  ) : !maximo ? (
+    Swal.fire({
+      icon: 'info',
+      title: '¡Debes ingresar un precio máximo!',
+      text: 'Para filtrar por precio ambos campos deben contener valores mayor a 0.'
+    })
+  ) : (
+    minimo, maximo
+  )
+
+  if (minimo && maximo) {
+
+    let InputSearchJuguetes = document.querySelector('#BuscarMedicamento');
+    let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
+    let Juguetes;
+
+    desc.checked ? (
+      Juguetes = await ApiFetch(urlApi, tipoJuguete, ordenDesc)
+    ) : (
+      Juguetes = await ApiFetch(urlApi, tipoJuguete, ordenAsc)
+    )
+
+    let JuguetesFiltrados = Juguetes.products.filter(juguete => {
+      juguete.nombre = juguete.nombre.toLowerCase();
+      juguete.descripcion = juguete.descripcion.toLowerCase();
+
+      return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
+    })
+
+    JuguetesFiltrados.length === 0 ? (
+      resetearTemplateJuguetes(),
+      busquedaJugueteNoEncontrada()
+    ) : (
+      resetearTemplateJuguetes(),
+      getProductsJuguetes(JuguetesFiltrados)
+    )
+
+  }
+
+}
+
+async function filtrarOrdenarJuguetes() {
+
+  let minimo = Number(document.querySelector('#precioMinimoJuguete').value);
+  let maximo = Number(document.querySelector('#precioMaximoJuguete').value);
+  let InputSearchJuguetes = document.querySelector('#BuscarJuguetes');
+  let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
+  let Juguetes;
+
+  let asc = document.querySelector('#asc_med');
+
+  if (minimo && maximo) {
+
+    asc.checked ? (
+      Juguetes = await ApiFetch(urlApi, tipoJuguete, ordenAsc)
+    ) : (
+      Juguetes = await ApiFetch(urlApi, tipoJuguete, ordenDesc)
+    )
+
+    let JuguetesFiltrados = Juguetes.products.filter(juguete => {
+      juguete.nombre = juguete.nombre.toLowerCase();
+      juguete.descripcion = juguete.descripcion.toLowerCase();
+      return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
+    })
+
+    JuguetesFiltrados.length === 0 ? (
+      resetearTemplateJuguetes(),
+      busquedaJugueteNoEncontrada()
+    ) : (
+      resetearTemplateJuguetes(),
+      getProductsJuguetes(JuguetesFiltrados)
+    )
+
+  } else {
+
+    asc.checked ? (
+      Juguetes = await ApiFetch(urlApi, tipoJuguete, ordenAsc)
+    ) : (
+      Juguetes = await ApiFetch(urlApi, tipoJuguete, ordenDesc)
+    )
+
+    let JuguetesFiltrados = Juguetes.products.filter(juguete => {
+      juguete.nombre = juguete.nombre.toLowerCase();
+      juguete.descripcion = juguete.descripcion.toLowerCase();
+
+      return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1);
+    })
+
+    JuguetesFiltrados.length === 0 ? (
+      resetearTemplateJuguetes(),
+      busquedaJugueteNoEncontrada()
+    ) : (
+      resetearTemplateJuguetes(),
+      getProductsJuguetes(JuguetesFiltrados)
+    )
+  }
+
 }
