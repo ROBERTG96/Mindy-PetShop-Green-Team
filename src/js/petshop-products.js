@@ -111,9 +111,45 @@ function getProductsJuguetes(Juguetes) {
 
 
 let carrito = [];
+const numItemsCarrito = document.querySelector('#numItemsCarrito');
+const vaciarCarrito = document.querySelector('#vaciarCarrito');
+const precioTotal = document.querySelector("#precioTotal");
+
+document.addEventListener('DOMContentLoaded', () => {
+    carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    mostrarCarrito();
+})
+
+vaciarCarrito.addEventListener('click', () => {
+    // Mostrar una alerta de SweetAlert
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: '¿Está seguro de que quiere vaciar el carrito?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, ¡estoy seguro!',
+        dangerMode: true,
+    }).then((vaciar) => {
+        // Si el usuario confirma la acción, vaciar el carrito
+        if (vaciar.isConfirmed) {
+            carrito = [];
+            mostrarCarrito();
+            Swal.fire(
+                'Carrito vaciado!',
+                'Los elementos han sido eliminados.',
+                'success'
+            )
+        }
+    });
+});
+
 
 function agregarAlCarrito(idProducto) {
     const item = Api.find(producto => producto._id === idProducto);
+
+
     carrito.push(item);
     mostrarCarrito();
 }
@@ -134,11 +170,32 @@ const mostrarCarrito = () => {
             <p>Precio: ${producto.precio}</p>
             <p>Cantidad: ${producto.stock}</p>
     
-            <button class="btn btn-danger mb-4">Eliminar del carrito</button>
+            <button onclick="eliminarProducto('${producto._id}')" class="btn btn-danger mb-4">Eliminar del carrito</button>
         </div>
         
     </div>`
     });
+
+    if (carrito.length == 0) {
+        modalBody.innerHTML = `<div class="alert alert-warning" role="alert">
+        ¡Tu carrito está vacío! Debes agregar productos, para procesar tu compra.
+      </div>`
+    }
+
+    precioTotal.textContent = carrito.reduce((acc, prod) => acc + parseFloat(prod.stock) * parseFloat(prod.precio), 0)
+
+    numItemsCarrito.textContent = carrito.length;
+    guardarStorage();
+}
+
+function eliminarProducto(id) {
+    const productId = id;
+    carrito = carrito.filter((product) => product._id !== productId);
+    mostrarCarrito();
+}
+
+function guardarStorage() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 

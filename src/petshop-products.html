@@ -16,6 +16,10 @@
     <!-- Bootstrap Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+
+    <!-- Sweet alert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+
     <title>PetShop - Mindy</title>
 </head>
 
@@ -34,10 +38,12 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Vaciar carrito</button>
-                    <button type="button" class="btn btn-success">Continuar compra</button>
+                    <button type="button" class="btn btn-danger" id="vaciarCarrito">Vaciar carrito</button>
+                    <button type="button" class="btn btn-success" id="continuarCompra">Continuar compra</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <p>Total: </p>
+
+                    <span class="text-center fs-5 fw-bolder">Total: $</span>
+                    <p class="text-center fs-5 fw-bolder" id="precioTotal"></p>
                 </div>
             </div>
         </div>
@@ -82,7 +88,7 @@
                             </li>
                             <li class="nav-item active"><a class="nav-link text-light" href="#" data-toggle="tooltip" title="Tienda" data-bs-placement="bottom"><i class="bi bi-shop"></i></a></li>
                             <li class="nav-item active"> <a class="nav-link text-light" href="./petshop-shopping-card.html" data-toggle="tooltip" title="Carrito" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#modalShoppingCart"><i class="bi bi-cart-check-fill"></i>
-                                <span class="badge bg-danger rounded-pill cart-item-count">0</span>
+                                <span class="badge bg-danger rounded-pill cart-item-count" id="numItemsCarrito">0</span>
                                 </a></li>
                             <li class="nav-item active">
                                 <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto" data-bs-placement="bottom"> <i class="bi bi-person-lines-fill"></i>
