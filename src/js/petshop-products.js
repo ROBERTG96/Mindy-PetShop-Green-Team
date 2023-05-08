@@ -125,6 +125,7 @@ let carrito = new Array();
 const numItemsCarritox1 = document.querySelector('#numItemsCarritox1');
 const numItemsCarritox2 = document.querySelector('#numItemsCarritox2');
 const numItemsCarritox3 = document.querySelector('#numItemsCarritox3');
+const numItemsCarritox4 = document.querySelector('#numItemsCarritox4');
 
 const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
@@ -213,7 +214,8 @@ const mostrarCarrito = () => {
     numItemsCarritox1.textContent = carrito.length;
     numItemsCarritox2.textContent = carrito.length;
     numItemsCarritox3.textContent = carrito.length;
-
+    numItemsCarritox4.textContent = carrito.length;
+    
     guardarStorage();
 }
 
