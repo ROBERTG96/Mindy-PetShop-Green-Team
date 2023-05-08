@@ -6,13 +6,18 @@
     --green-accent: #8BC34A;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
 .color_primary {
     background-color: var(--secondary-color);
 }
 
 .text-light {
     color: #fff;
-    /* Se puede usar el valor fijo si prefieres en vez de la variable --text-color */
 }
 
 .shadow {
@@ -23,16 +28,10 @@
     margin: 0;
 }
 
-
-/* Ajusta el color del botón para que se vea bien sobre el color de fondo secundario */
-
 .btn-outline-light {
     color: var(--secondary-color);
     border-color: var(--secondary-color);
 }
-
-
-/* Cambia el color de fondo y de texto de las opciones del radio */
 
 .form-check-input:checked {
     background-color: var(--green-accent);
@@ -42,9 +41,6 @@
 .form-check-input:checked+.form-check-label {
     color: var(--text-color);
 }
-
-
-/* Establece un borde redondeado solo en un lado del contenedor del formulario */
 
 .rounded-start {
     border-top-left-radius: 0.25rem;
