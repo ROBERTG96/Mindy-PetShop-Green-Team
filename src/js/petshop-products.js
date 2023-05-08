@@ -56,9 +56,9 @@ const cardsContainerJuguetes = document.getElementById("cards-container-juguetes
 // TEMPLATE FARMACIA
 function getProductsMedicamentos(Medicamentos) {
     Medicamentos.forEach((medicamento) => {
-        let card = document.createElement("div");
-        card.className = "col-md-3 mb-4";
-        card.innerHTML = `
+                let card = document.createElement("div");
+                card.className = "col-md-3 mb-4";
+                card.innerHTML = `
     <div class="card rounded shadow h-100">
     <img src="${medicamento.imagen}" onclick="detalleProducto('${medicamento._id}')" class="card-img-top" alt="${medicamento.nombre}">
     <div class="card-body color_primary text-light mb-3">
@@ -124,6 +124,7 @@ function getProductsJuguetes(Juguetes) {
 let carrito = new Array();
 const numItemsCarritox1 = document.querySelector('#numItemsCarritox1');
 const numItemsCarritox2 = document.querySelector('#numItemsCarritox2');
+const numItemsCarritox3 = document.querySelector('#numItemsCarritox3');
 
 const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
@@ -184,7 +185,7 @@ const mostrarCarrito = () => {
     modalBody.innerHTML = '';
 
     carrito.forEach((producto) => {
-        modalBody.innerHTML += `<div class="modal-contenedor">
+        modalBody.innerHTML += `<div class="modal-contenedor d-flex justify-content-center">
         <hr>
         <div>
             <img src="${producto.imagen}" class="img-fluid img-carrito img" alt="${producto.nombre}">
@@ -211,6 +212,7 @@ const mostrarCarrito = () => {
 
     numItemsCarritox1.textContent = carrito.length;
     numItemsCarritox2.textContent = carrito.length;
+    numItemsCarritox3.textContent = carrito.length;
 
     guardarStorage();
 }
