@@ -126,14 +126,22 @@ const numItemsCarritox1 = document.querySelector('#numItemsCarritox1');
 const numItemsCarritox2 = document.querySelector('#numItemsCarritox2');
 const numItemsCarritox3 = document.querySelector('#numItemsCarritox3');
 const numItemsCarritox4 = document.querySelector('#numItemsCarritox4');
-
 const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
+const procesarCompra = document.querySelector("#procesarCompra")
+const activarFuncion = document.querySelector("#activarFuncion");
+
+
+if (activarFuncion === true) {
+    activarFuncion.addEventListener('click' , procesarPedido);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carrito = JSON.parse(localStorage.getItem('carrito'));
     mostrarCarrito();
 })
+
+
 
 vaciarCarrito.addEventListener('click', () => {
     // Mostrar una alerta de SweetAlert
@@ -160,6 +168,18 @@ vaciarCarrito.addEventListener('click', () => {
     });
 });
 
+procesarCompra.addEventListener('click' , () => {
+    if (carrito.length === 0) {
+       Swal.fire({
+           title: 'Carrito vacío',
+           text: '¡Debes agregar productos para procesar la compra!',
+           icon: 'warning',
+           confirmButtonText: 'Aceptar'
+       });
+    }else{
+        location.href = "petshop-purchase.html"
+    }
+});
 
 async function agregarAlCarrito(idProducto) {
     const existeProductoEnCarrito = carrito.some(prod => prod._id === idProducto)
@@ -230,7 +250,25 @@ function guardarStorage() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+function procesarPedido() {
+    carrito.forEach((prod) => {
+        const listaCompra = document.querySelector("#lista-compra tbody");
 
+        const row = document.createElement('row');
+        row.innerHTML += `
+        <td>
+        <img class="img-fluid img-carrito" src="${img}"/>
+        </td>
+        <td>${prod.nombre}</td>
+      <td>${prod.precio}</td>
+      <td>${prod.cantidad}</td>
+      <td>${prod.precio * cantidad}</td>
+
+        `
+
+        listaCompra.appendChild(row);
+    })
+}
 
 
 function resetearTemplateMedicamentos() {
@@ -602,4 +640,5 @@ async function limpiarTemplateJuguetes() {
 function detalleProducto(id) {
     console.log('id a buscar:', id);
     window.location.href = `petshop-details.html?id=${id}`;
+    procesarPedido();
 }
