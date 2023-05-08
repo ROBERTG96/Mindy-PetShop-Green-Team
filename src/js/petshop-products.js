@@ -28,6 +28,8 @@ async function getApi(urlApi) {
     } catch (error) {
         console.error(error);
     }
+}
+
 // QUERY API STARTED
 async function ApiFetch(url, tipo, orden, querys) {
     let response = await fetch(`${url}${tipo}${orden}${querys}`);
@@ -76,7 +78,7 @@ function getProductsMedicamentos(Medicamentos) {
                 `<p class="success"><i class="bi bi-box-seam-fill"></i><b> ${medicamento.stock}</b></p>`
             )}
         <p class="success"><i class="bi bi-currency-dollar"></i><b>${medicamento.precio}</b></p>
-        <a href="#" class="btn btn-outline form-control mt-3" onclick="agregarAlCarrito('${medicamento._id}')"><i class="fas fa-shopping-cart"></i> Add to
+        <a class="btn btn-outline form-control mt-3" onclick="agregarAlCarrito('${medicamento._id}')"><i class="fas fa-shopping-cart"></i> Add to
             Cart</a>
       </div>
     </div>
@@ -109,7 +111,7 @@ function getProductsJuguetes(Juguetes) {
                 `<p class="success"><i class="bi bi-box-seam-fill"></i><b> ${Juguete.stock}</b></p>`
             )}
         <p class="success"><i class="bi bi-currency-dollar"></i><b>${Juguete.precio}</b></p>
-        <a href="#" class="btn btn-outline form-control mt-3" onclick="agregarAlCarrito('${Juguete._id}')"><i class="fas fa-shopping-cart"></i> Add to
+        <a  class="btn btn-outline form-control mt-3" onclick="agregarAlCarrito('${Juguete._id}')"><i class="fas fa-shopping-cart"></i> Add to
             Cart</a>
       </div>
     </div>
@@ -120,7 +122,9 @@ function getProductsJuguetes(Juguetes) {
 
 
 let carrito = new Array();
-const numItemsCarrito = document.querySelector('#numItemsCarrito');
+const numItemsCarritox1 = document.querySelector('#numItemsCarritox1');
+const numItemsCarritox2 = document.querySelector('#numItemsCarritox2');
+
 const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
 
@@ -155,13 +159,14 @@ vaciarCarrito.addEventListener('click', () => {
 });
 
 
-function agregarAlCarrito(idProducto) {
+async function agregarAlCarrito(idProducto) {
     const existeProductoEnCarrito = carrito.some(prod => prod._id === idProducto)
     if (existeProductoEnCarrito) {
         const productoExistente = carrito.find(prod => prod._id === idProducto);
         productoExistente.cantidad++;
     } else {
-        const item = Api.find((prod) => prod._id === idProducto);
+        let apiAux = await ApiFetch(urlApi, '', '', '');
+        const item = apiAux?.products.find((prod) => prod._id === idProducto);
         item.cantidad = 1;
         carrito.push(item);
     }
@@ -182,7 +187,7 @@ const mostrarCarrito = () => {
         modalBody.innerHTML += `<div class="modal-contenedor">
         <hr>
         <div>
-            <img src="${producto.imagen}" class="img-fluid img-carrito" alt="">
+            <img src="${producto.imagen}" class="img-fluid img-carrito img" alt="${producto.nombre}">
         </div>
     
         <div>
@@ -204,7 +209,9 @@ const mostrarCarrito = () => {
 
     precioTotal.textContent = carrito.reduce((acc, prod) => acc + parseFloat(prod.cantidad) * parseFloat(prod.precio), 0)
 
-    numItemsCarrito.textContent = carrito.length;
+    numItemsCarritox1.textContent = carrito.length;
+    numItemsCarritox2.textContent = carrito.length;
+
     guardarStorage();
 }
 
