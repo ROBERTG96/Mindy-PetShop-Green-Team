@@ -5,6 +5,7 @@
     --green-accent: #8BC34A;
 }
 
+
 /* Navbar */
 
 .navbar {
@@ -41,6 +42,7 @@ a {
 .logoSidebar {
     height: 8rem;
 }
+
 
 /* Fin Navbar */
 
@@ -101,6 +103,8 @@ p.card-text.mb-1 {
 }
 
 .btn-stock {
+    background-color: #FFA500!important;
+    ;
     background-color: #FFA500 !important;
     ;
 }
@@ -211,3 +215,16 @@ footer a:hover {
 
 
 /* Fin footer */
+
+.modal-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 25px;
+    border-bottom: solid 1px var(--text-color);
+}
+
+.img-carrito {
+    width: 200px;
+    padding: 20px;
+}
