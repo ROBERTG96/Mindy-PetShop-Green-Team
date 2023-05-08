@@ -16,8 +16,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
 
-    <!-- FontAwesome-->
-    <script src="https://kit.fontawesome.com/ff48e921d3.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
 
@@ -31,15 +31,23 @@
                 </div>
             </div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-home.html" data-toggle="tooltip" title="Inicio" data-bs-placement="right"><i
-                        class="fa-solid fa-home btn-icon"></i> Inicio</a>
-                <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-products.html" data-toggle="tooltip" title="Productos" data-bs-placement="right"><i
-                        class="fa-solid fa-store btn-icon"></i> Tienda</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-cart.html" data-toggle="tooltip" title="Carrito de compras" data-bs-placement="right"><i
-                        class="fa-solid fa-cart-shopping btn-icon"></i> Carrito</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-contact.html" data-toggle="tooltip" title="Contacto" data-bs-placement="right"><i
-                        class="fa-solid fa-address-book btn-icon"></i> Contactanos</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-aboutUs.html" data-toggle="tooltip" title="Sobre nosotros" data-bs-placement="right"><i class="fa-solid fa-address-card btn-icon"></i> Sobre Nosotros</a>
+
+                <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-home.html"
+                    data-toggle="tooltip" title="Inicio" data-bs-placement="right"><i
+                        class="bi bi-house-fill btn-icon"></i> Inicio</a>
+
+                <a class="list-group-item  list-group-item-action list-group-item-light p-3"
+                    href="./petshop-products.html" data-toggle="tooltip" title="Productos" data-bs-placement="right"><i
+                        class="bi bi-shop btn-icon"></i> Tienda</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-cart.html"
+                    data-toggle="tooltip" title="Carrito de compras" data-bs-placement="right"><i
+                        class="bi bi-cart-check-fill btn-icon"></i> Carrito</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                    href="./petshop-contact.html" data-toggle="tooltip" title="Contacto" data-bs-placement="right"><i
+                        class="bi bi-person-lines-fill btn-icon"></i> Contactanos</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3"
+                    href="./petshop-aboutUs.html" data-toggle="tooltip" title="Sobre nosotros"
+                    data-bs-placement="right"><i class="bi bi-person-vcard-fill btn-icon"></i> Sobre Nosotros</a>
 
             </div>
         </div>
@@ -49,28 +57,35 @@
             <!-- Top navigation-->
             <nav class="navbar navbar-expand-lg navbar-light border-bottom">
                 <div class="container-fluid">
-                    <button class="btn btn-basic" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                    <button class="btn btn-light" id="sidebarToggle"><i class="bi bi-list"></i></button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
                             class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-home.html" data-toggle="tooltip" title="Inicio" data-bs-placement="bottom"><i
-                                        class="fa-solid fa-house"></i></a>
+                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-home.html"
+                                    data-toggle="tooltip" title="Inicio" data-bs-placement="bottom"><i
+                                        class="bi bi-house-fill"></i></a>
                             </li>
-                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-products.html"><i
-                                        class="fa-solid fa-store" href="./petshop-products.html" data-toggle="tooltip"
-                                        title="Tienda" data-bs-placement="bottom"></i></a></li>
-                            <li class="nav-item active"><a class="nav-link text-light" href="#!"><i
-                                        class="fa-solid fa-cart-shopping" href="./petshop-products.html"
-                                        data-toggle="tooltip" title="Carrito" data-bs-placement="bottom"></i></a></li>
+                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-products.html"
+                                    data-toggle="tooltip" title="Tienda" data-bs-placement="bottom"><i
+                                        class="bi bi-shop"></i></a></li>
+                            <li class="nav-item active"><a class="nav-link text-light"
+                                    href="./petshop-shopping-card.html" data-toggle="tooltip" title="Carrito"
+                                    data-bs-placement="bottom"><i class="bi bi-cart-check-fill"></i></a></li>
                             <li class="nav-item active">
-                                <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto" data-bs-placement="bottom"> <i class="fa-solid fa-address-book"></i>
+                                <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto"
+                                    data-bs-placement="bottom"> <i class="bi bi-person-lines-fill"></i>
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user-shield"></i> </a>
-                                <div class="dropdown-menu dropdown-menu-end" id="mostrar" aria-labelledby="navbarDropdown">
+                                <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="bi bi-person-fill-gear"></i> </a>
+                                <div class="dropdown-menu dropdown-menu-end" id="mostrar"
+                                    aria-labelledby="navbarDropdown">
 
                                 </div>
                             </li>
@@ -79,9 +94,9 @@
                 </div>
             </nav>
             <!-- Page content-->
-            <div class="container-flex">
+            <div class="container-flex color_primary shadow">
                 <div class="card-body">
-                    <div class="container py-3 h-100">
+                    <div class="container-flex py-3 h-100">
                         <div class="row d-flex align-items-center justify-content-center h-100">
                             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 text-dark">
                                 <div class="card shadow p-4 rounded-4">
@@ -91,24 +106,30 @@
                                         </div>
 
                                         <div class="form-floating my-2 mb-2">
-                                            <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control form-control-lg" />
+                                            <input type="text" name="nombre" placeholder="Nombre del producto"
+                                                class="form-control form-control-lg" minlength="5" maxlength="150"
+                                                required />
                                             <label class="form-label" for="nombre">Nombre del producto</label>
                                         </div>
 
                                         <div class="form-floating my-2 mb-2">
-                                            <textarea class="form-control" style="height: 100px" placeholder="Descripción del producto" name="descripcion"></textarea>
+                                            <textarea class="form-control" style="height: 100px"
+                                                placeholder="Descripción del producto" required name="descripcion"
+                                                minlength="10" maxlength="200"></textarea>
                                             <label for="descripcion">Descripción del producto</label>
                                         </div>
 
                                         <div class="form-floating my-2 mb-2">
-                                            <input type="url" name="imagen" placeholder="Url Imagen" class="form-control form-control-lg" />
+                                            <input type="url" name="imagen" placeholder="Url Imagen"
+                                                class="form-control form-control-lg" required>
                                             <label class="form-label" for="imagen">Url Imagen</label>
                                         </div>
 
 
                                         <div class="form-floating">
-                                            <select class="form-select" id="floatingSelect" aria-label="Tipo de producto" name="tipo">
-                                                <option selected disabled>Articulo</option>
+                                            <select class="form-select" id="floatingSelect"
+                                                aria-label="Tipo de producto" name="tipo" required>
+                                                <option selected disabled></option>
                                                 <option value="Medicamento">Medicamentos</option>
                                                 <option value="Juguete">Juguetes</option>
                                             </select>
@@ -116,30 +137,34 @@
                                         </div>
 
                                         <div class="form-floating my-2 mb-2">
-                                            <input type="number" name="precio" placeholder="Precio" class="form-control form-control-lg" />
+                                            <input type="number" name="precio" placeholder="Precio"
+                                                class="form-control form-control-lg" required min="1" max="999" />
                                             <label class="form-label" for="precio">Precio</label>
                                         </div>
 
                                         <div class="form-floating my-2 mb-2">
-                                            <input type="number" name="stock" placeholder="Stock" class="form-control form-control-lg" />
+                                            <input type="number" name="stock" placeholder="Stock"
+                                                class="form-control form-control-lg" required min="1" max="999" />
                                             <label class="form-label" for="stock">Stock</label>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md">
-                                                <a type="button" data-toggle="tooltip" title="Registrar Producto" data-bs-placement="bottom" class="btn btn-success form-control btn-lg btn-block my-2 mb-4" onclick="NuevoProducto()">
-                                                    <i class="fa-solid fa-paper-plane fa-2x"></i>
-                                                </a>
+                                                <button type="submit" data-toggle="tooltip" title="Registrar Producto"
+                                                    data-bs-placement="bottom"
+                                                    class="btn btn-outline-success-send form-control btn-lg btn-block my-2 mb-4">
+                                                    <i class="bi bi-send-plus-fill"></i>
+                                                </button>
                                             </div>
                                             <div class="col-md">
-                                                <a type="button" data-toggle="tooltip" data-bs-placement="bottom" title="Limpiar Formulario" class="btn btn-danger form-control btn-lg btn-block my-2 mb-4" onclick="LimpiarFormulario()">
-                                                    <i class="fa-solid fa-eraser fa-2x"></i>
+                                                <a type="button" data-toggle="tooltip" data-bs-placement="bottom"
+                                                    title="Limpiar Formulario"
+                                                    class="btn btn-outline-danger form-control btn-lg btn-block my-2 mb-4"
+                                                    onclick="LimpiarFormulario()">
+                                                    <i class="bi bi-x-lg "></i>
                                                 </a>
                                             </div>
                                         </div>
-
-
-
                                     </form>
                                 </div>
 
