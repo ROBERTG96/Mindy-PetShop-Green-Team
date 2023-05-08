@@ -20,11 +20,11 @@ function MostarAdmin() {
         userAdmin ? (
             mostrar.innerHTML = `
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="./petshop-new-products.html"> <i class="bi bi-patch-plus-fill btn-icon"></i> Nuevo Producto</a>
+            <a class="dropdown-item" href="./petshop-new-products.html" target="_blank"> <i class="bi bi-patch-plus-fill btn-icon"></i> Nuevo Producto</a>
         <a class="dropdown-item" onclick="logout()"> <i class="bi bi-door-closed-fill btn-icon"></i> Cerrar Sesión</a>`
         ) : (
             mostrar.innerHTML = `
-            <a class="dropdown-item" href="./petshop-login.html"> <i class="bi bi-door-open-fill btn-icon"></i> Iniciar Sesión</a>
+            <a class="dropdown-item" href="./petshop-login.html" target="_blank"> <i class="bi bi-door-open-fill btn-icon"></i> Iniciar Sesión</a>
             <div class="dropdown-divider"></div>
            `
         )
@@ -56,6 +56,9 @@ function ValidarRutaNuevoProducto() {
 
     if (rutaLogin === '/src/petshop-new-products.html') {
         if (!user) {
+            let form = document.getElementById("FormRegistroProducto")
+            form.style.visibility = 'hidden';
+
             Swal.fire({
                 icon: 'info',
                 title: '¡No eres admin de la aplicación!',

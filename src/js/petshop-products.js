@@ -9,7 +9,7 @@ const querys = '';
 let ApiMedicamentos = new Array();
 let ApiJuguetes = new Array();
 
-
+// QUERY API STARTED
 async function ApiFetch(url, tipo, orden, querys) {
     let response = await fetch(`${url}${tipo}${orden}${querys}`);
     response = await response.json();
@@ -26,12 +26,13 @@ async function getApi() {
         console.error(error);
     }
 }
-
+// TEMPLATE STARTED
 getApi();
 
 const cardsContainerMedicamentos = document.getElementById("cards-container-medicamentos");
 const cardsContainerJuguetes = document.getElementById("cards-container-juguetes");
 
+// TEMPLATE FARMACIA
 function getProductsMedicamentos(Medicamentos) {
     Medicamentos.forEach((medicamento) => {
         let card = document.createElement("div");
@@ -64,7 +65,7 @@ function getProductsMedicamentos(Medicamentos) {
         cardsContainerMedicamentos.appendChild(card);
     });
 }
-
+// TEMPLATE JUGUETES
 function getProductsJuguetes(Juguetes) {
     Juguetes.forEach((Juguete) => {
         const card = document.createElement("div");
@@ -98,6 +99,8 @@ function getProductsJuguetes(Juguetes) {
     });
 }
 
+// RESETEAR TEMPLATE
+
 function resetearTemplateMedicamentos() {
     cardsContainerMedicamentos.innerHTML = '';
 }
@@ -105,6 +108,7 @@ function resetearTemplateJuguetes() {
     cardsContainerJuguetes.innerHTML = '';
 }
 
+// FILTROS FARMACIA
 
 async function filtrar_medicamentos() {
 
@@ -112,68 +116,33 @@ async function filtrar_medicamentos() {
     let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
     let apiAux = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '');
 
-    if (apiAux.products.length != ApiMedicamentos.products.length) {
-        let MedicamentosFiltrados = apiAux?.products.filter(medicamento => {
-            medicamento.nombre = medicamento.nombre.toLowerCase();
-            medicamento.descripcion = medicamento.descripcion.toLowerCase();
-            return medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1;
-        })
+    let MedicamentosFiltrados = apiAux?.products.filter(medicamento => {
+        medicamento.nombre = medicamento.nombre.toLowerCase();
+        medicamento.descripcion = medicamento.descripcion.toLowerCase();
+        return medicamento.nombre.indexOf(BusquedaMedicamento) > -1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1;
+    })
 
-        if (MedicamentosFiltrados.length === 0) {
-            resetearTemplateMedicamentos();
-            busquedaMedicamentoNoEncontrada();
-        } else {
-            let nombreProducto = new Array();
-            nombreProducto = MedicamentosFiltrados.map(product => {
-                return product.nombre
-            })
-            let api = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '');
+    let MedicamentosFarmacia = MedicamentosFiltrados.map(medicamento => {
+        medicamento.nombre = medicamento.nombre.charAt(0).toUpperCase() + medicamento.nombre.slice(1)
+        medicamento.descripcion = medicamento.descripcion.charAt(0).toUpperCase() + medicamento.descripcion.slice(1)
+        return { ...medicamento }
+    })
 
-            let productoOriginal = api?.products.filter(med => {
-                return nombreProducto.includes(med.nombre.toLowerCase())
-            })
-
-            console.log(productoOriginal);
-
-            resetearTemplateMedicamentos();
-            getProductsMedicamentos(productoOriginal)
-        }
-    } else {
-
-        let MedicamentosFiltrados = ApiMedicamentos?.products.filter(medicamento => {
-            medicamento.nombre = medicamento.nombre.toLowerCase();
-            medicamento.descripcion = medicamento.descripcion.toLowerCase();
-            return medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1;
-        })
-
-        if (MedicamentosFiltrados.length === 0) {
-            resetearTemplateMedicamentos();
-            busquedaMedicamentoNoEncontrada();
-        } else {
-            let nombreProducto = new Array();
-            nombreProducto = MedicamentosFiltrados.map(product => {
-                return product.nombre
-            })
-
-            let productoOriginal = apiAux?.products.filter(med => {
-                return nombreProducto.includes(med.nombre.toLowerCase())
-            })
-
-            console.log(productoOriginal);
-
-            resetearTemplateMedicamentos();
-            getProductsMedicamentos(productoOriginal)
-        }
-    }
-
-
-
+    MedicamentosFarmacia.length === 0 ? (
+        resetearTemplateMedicamentos(),
+        busquedaMedicamentoNoEncontrada()
+    ) : (
+        resetearTemplateMedicamentos(),
+        getProductsMedicamentos(MedicamentosFarmacia)
+    )
 }
 
 async function filtrarPrecios() {
 
     let minimo = Number(document.querySelector('#precioMinimo').value);
     let maximo = Number(document.querySelector('#precioMaximo').value);
+    let ordenarAsc = document.querySelector('#asc_med')
+    let ordenDesc = document.querySelector('#desc_med')
 
     !minimo ? (
         Swal.fire({
@@ -191,166 +160,96 @@ async function filtrarPrecios() {
         minimo, maximo
     )
 
-
     if (minimo && maximo) {
 
         let InputSearchMedicamento = document.querySelector('#BuscarMedicamento');
         let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
         let apiAux = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
-        let checkedOrdenMedicamento = document.querySelector('#asc_med');
 
-        if (apiAux.products.length != ApiMedicamentos.products.length) {
+        let MedicamentosFiltrados = apiAux.products.filter(medicamento => {
+            medicamento.nombre = medicamento.nombre.toLowerCase();
+            medicamento.descripcion = medicamento.descripcion.toLowerCase();
+            return (medicamento.nombre.indexOf(BusquedaMedicamento) > -1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
+        })
 
-            let MedicamentosFiltrados = apiAux.products.filter(medicamento => {
-                medicamento.nombre = medicamento.nombre.toLowerCase();
-                medicamento.descripcion = medicamento.descripcion.toLowerCase();
+        let MedicamentosFarmacia = MedicamentosFiltrados.map(medicamento => {
+            medicamento.nombre = medicamento.nombre.charAt(0).toUpperCase() + medicamento.nombre.slice(1)
+            medicamento.descripcion = medicamento.descripcion.charAt(0).toUpperCase() + medicamento.descripcion.slice(1)
+            return { ...medicamento }
+        })
 
-                return (medicamento.nombre.indexOf(BusquedaMedicamento) > - 1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
-            })
-
-            if (MedicamentosFiltrados.length === 0) {
-                resetearTemplateMedicamentos();
-                busquedaMedicamentoNoEncontrada();
-            } else {
-                let nombreProducto = new Array();
-                nombreProducto = MedicamentosFiltrados.map(product => {
-                    return product.nombre
-                })
-                let api;
-                checkedOrdenMedicamento.checked === true ? (
-                    api = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
-                ) : (
-                    api = await ApiFetch(urlApi, tipoMedicamento, ordenDesc, '')
-                )
-
-                let productoOriginal = api?.products.filter(medicamento => {
-                    return nombreProducto.includes(medicamento.nombre.toLowerCase())
-                })
-
-                resetearTemplateMedicamentos();
-                getProductsMedicamentos(productoOriginal)
-            }
-        } else {
-
-            let MedicamentosFiltrados = ApiMedicamentos.products.filter(medicamento => {
-                medicamento.nombre = medicamento.nombre.toLowerCase();
-                medicamento.descripcion = medicamento.descripcion.toLowerCase();
-
-                return (medicamento.nombre.indexOf(BusquedaMedicamento) > -1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
-            })
-
-            if (MedicamentosFiltrados.length === 0) {
-                resetearTemplateMedicamentos();
-                busquedaMedicamentoNoEncontrada();
-            } else {
-                resetearTemplateMedicamentos();
-                getProductsMedicamentos(MedicamentosFiltrados)
-            }
-        }
+        MedicamentosFarmacia.length === 0 ? (
+            resetearTemplateMedicamentos(),
+            busquedaMedicamentoNoEncontrada()
+        ) : (
+            ordenarAsc.checked = false,
+            ordenDesc.checked = false,
+            resetearTemplateMedicamentos(),
+            getProductsMedicamentos(MedicamentosFarmacia)
+        )
     }
-
 }
 
 async function filtrarOrdenarMedicamentos() {
 
     let minimo = Number(document.querySelector('#precioMinimo').value);
     let maximo = Number(document.querySelector('#precioMaximo').value);
-    let InputSearchJuguetes = document.querySelector('#BuscarMedicamento');
-    let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
-    let apiAux = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
-    let checkedOrdenJuguete = document.querySelector('#asc_med');
+    let InputSearchMedicamento = document.querySelector('#BuscarMedicamento');
+    let BusquedaMedicamento = InputSearchMedicamento.value.toLowerCase();
+    let checkedOrdenMedicamento = document.querySelector('#asc_med');
+    let apiAux;
+
+    checkedOrdenMedicamento.checked === true ? (
+        apiAux = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
+    ) : (
+        apiAux = await ApiFetch(urlApi, tipoMedicamento, ordenDesc, '')
+    )
 
     if (minimo && maximo) {
 
-        if (apiAux.products.length != ApiMedicamentos.products.length) {
-
-            let MedicamentosFiltrados = apiAux.products.filter(medicamento => {
-                medicamento.nombre = medicamento.nombre.toLowerCase();
-                medicamento.descripcion = medicamento.descripcion.toLowerCase();
-
-                return (medicamento.nombre.indexOf(BusquedaJuguetes) > -1 || medicamento.descripcion.indexOf(BusquedaJuguetes) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
-            })
-
-            if (MedicamentosFiltrados.length === 0) {
-                resetearTemplateMedicamentos();
-                busquedaMedicamentoNoEncontrada();
-            } else {
-                let nombreProducto = new Array();
-                nombreProducto = MedicamentosFiltrados.map(product => {
-                    return product.nombre
-                })
-                let api;
-                checkedOrdenJuguete.checked === true ? (
-                    api = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
-                ) : (
-                    api = await ApiFetch(urlApi, tipoMedicamento, ordenDesc, '')
-                )
-
-                let productoOriginal = api?.products.filter(medicamento => {
-                    return nombreProducto.includes(medicamento.nombre.toLowerCase())
-                })
-
-                resetearTemplateMedicamentos();
-                getProductsMedicamentos(productoOriginal)
-            }
-        } else {
-            let api;
-            checkedOrdenJuguete.checked === true ? (
-                api = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
-            ) : (
-                api = await ApiFetch(urlApi, tipoMedicamento, ordenDesc, '')
-            )
-            let ListaMedicamentoOrdenada = api.products.filter(medicamento => {
-                return (medicamento.nombre.indexOf(BusquedaJuguetes) > -1 || medicamento.descripcion.indexOf(BusquedaJuguetes) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
-
-            })
-
-            ListaMedicamentoOrdenada.length === 0 ? (
-                resetearTemplateMedicamentos(),
-                busquedaMedicamentoNoEncontrada()
-            ) : (
-                resetearTemplateMedicamentos(),
-                getProductsMedicamentos(ListaMedicamentoOrdenada)
-            )
-
-        }
-
-    } else {
         let MedicamentosFiltrados = apiAux.products.filter(medicamento => {
             medicamento.nombre = medicamento.nombre.toLowerCase();
             medicamento.descripcion = medicamento.descripcion.toLowerCase();
-
-            return (medicamento.nombre.indexOf(BusquedaJuguetes) > -1 || medicamento.descripcion.indexOf(BusquedaJuguetes) > -1)
-                && (medicamento.precio >= minimo && medicamento.precio <= maximo);
+            return (medicamento.nombre.indexOf(BusquedaMedicamento) > -1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1) && (medicamento.precio >= minimo && medicamento.precio <= maximo);
         })
 
-        if (MedicamentosFiltrados.length === 0) {
-            resetearTemplateMedicamentos();
-            busquedaMedicamentoNoEncontrada();
-        } else {
+        let MedicamentosFarmacia = MedicamentosFiltrados.map(medicamento => {
+            medicamento.nombre = medicamento.nombre.charAt(0).toUpperCase() + medicamento.nombre.slice(1)
+            medicamento.descripcion = medicamento.descripcion.charAt(0).toUpperCase() + medicamento.descripcion.slice(1)
+            return { ...medicamento }
+        })
 
-            let nombreProducto = new Array();
-            nombreProducto = MedicamentosFiltrados.map(product => {
-                return product.nombre
-            })
-            let api;
-            checkedOrdenJuguete.checked === true ? (
-                api = await ApiFetch(urlApi, tipoMedicamento, ordenAsc, '')
-            ) : (
-                api = await ApiFetch(urlApi, tipoMedicamento, ordenDesc, '')
-            )
+        MedicamentosFarmacia.length === 0 ? (
+            resetearTemplateMedicamentos(),
+            busquedaMedicamentoNoEncontrada()
+        ) : (
+            resetearTemplateMedicamentos(),
+            getProductsMedicamentos(MedicamentosFarmacia)
+        )
 
-            let productoOriginal = api?.products.filter(medicamento => {
-                return nombreProducto.includes(medicamento.nombre.toLowerCase())
-            })
+    } else {
 
-            resetearTemplateMedicamentos();
-            getProductsMedicamentos(productoOriginal)
-        }
+        let MedicamentosFiltrados = apiAux.products.filter(medicamento => {
+            medicamento.nombre = medicamento.nombre.toLowerCase();
+            medicamento.descripcion = medicamento.descripcion.toLowerCase();
+            return (medicamento.nombre.indexOf(BusquedaMedicamento) > -1 || medicamento.descripcion.indexOf(BusquedaMedicamento) > -1)
+        })
+
+        let MedicamentosFarmacia = MedicamentosFiltrados.map(medicamento => {
+            medicamento.nombre = medicamento.nombre.charAt(0).toUpperCase() + medicamento.nombre.slice(1)
+            medicamento.descripcion = medicamento.descripcion.charAt(0).toUpperCase() + medicamento.descripcion.slice(1)
+            return { ...medicamento }
+        })
+
+        MedicamentosFarmacia.length === 0 ? (
+            resetearTemplateMedicamentos(),
+            busquedaMedicamentoNoEncontrada()
+        ) : (
+            resetearTemplateMedicamentos(),
+            getProductsMedicamentos(MedicamentosFarmacia)
+        )
     }
-
 }
-
 
 function busquedaMedicamentoNoEncontrada() {
     cardsContainerMedicamentos.innerHTML = ''
@@ -366,7 +265,8 @@ function busquedaMedicamentoNoEncontrada() {
 </div>
   `
 }
-// JS JUGUETES
+
+// FILTROS JUGUETES
 
 function busquedaJugueteNoEncontrada() {
     cardsContainerJuguetes.innerHTML = ''
@@ -385,66 +285,37 @@ function busquedaJugueteNoEncontrada() {
 
 async function filtrar_juguetes() {
 
-    let InputSearchJuguetes = document.querySelector('#BuscarJuguetes');
-    let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
+    let InputSearchJuguete = document.querySelector('#BuscarJuguetes');
+    let BusquedaJuguete = InputSearchJuguete.value.toLowerCase();
     let apiAux = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '');
 
-    if (apiAux.products.length != ApiJuguetes.products.length) {
-        let JuguetesFiltrados = apiAux?.products.filter(juguete => {
-            juguete.nombre = juguete.nombre.toLowerCase();
-            juguete.descripcion = juguete.descripcion.toLowerCase();
-            return juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1;
-        })
+    let JuguetesFiltrados = apiAux?.products.filter(juguete => {
+        juguete.nombre = juguete.nombre.toLowerCase();
+        juguete.descripcion = juguete.descripcion.toLowerCase();
+        return juguete.nombre.indexOf(BusquedaJuguete) > -1 || juguete.descripcion.indexOf(BusquedaJuguete) > -1;
+    })
 
-        if (JuguetesFiltrados.length === 0) {
-            resetearTemplateJuguetes();
-            busquedaJugueteNoEncontrada();
-        } else {
-            let nombreProducto = new Array();
-            nombreProducto = JuguetesFiltrados.map(product => {
-                return product.nombre
-            })
+    let TiendaJuguetes = JuguetesFiltrados.map(juguete => {
+        juguete.nombre = juguete.nombre.charAt(0).toUpperCase() + juguete.nombre.slice(1)
+        juguete.descripcion = juguete.descripcion.charAt(0).toUpperCase() + juguete.descripcion.slice(1)
+        return { ...juguete }
+    })
 
-            let api = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '');
-
-            let productoOriginal = api?.products.filter(juguete => {
-                return nombreProducto.includes(juguete.nombre.toLowerCase())
-            })
-
-            resetearTemplateJuguetes();
-            getProductsJuguetes(productoOriginal)
-        }
-    } else {
-
-        let JuguetesFiltrados = ApiJuguetes?.products.filter(juguete => {
-            juguete.nombre = juguete.nombre.toLowerCase();
-            juguete.descripcion = juguete.descripcion.toLowerCase();
-            return juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1;
-        })
-
-        if (JuguetesFiltrados.length === 0) {
-            resetearTemplateJuguetes();
-            busquedaJugueteNoEncontrada();
-        } else {
-            let nombreProducto = new Array();
-            nombreProducto = JuguetesFiltrados.map(product => {
-                return product.nombre
-            })
-
-            let productoOriginal = apiAux?.products.filter(juguete => {
-                return nombreProducto.includes(juguete.nombre.toLowerCase())
-            })
-
-            resetearTemplateJuguetes();
-            getProductsJuguetes(productoOriginal)
-        }
-    }
+    TiendaJuguetes.length === 0 ? (
+        resetearTemplateJuguetes(),
+        busquedaJugueteNoEncontrada()
+    ) : (
+        resetearTemplateJuguetes(),
+        getProductsJuguetes(TiendaJuguetes)
+    )
 }
 
 async function filtrarPreciosJuguete() {
 
     let minimo = Number(document.querySelector('#precioMinimoJuguete').value);
     let maximo = Number(document.querySelector('#precioMaximoJuguete').value);
+    let ordenarAsc = document.querySelector('#asc_jug')
+    let ordenDesc = document.querySelector('#desc_jug')
 
     !minimo ? (
         Swal.fire({
@@ -463,60 +334,31 @@ async function filtrarPreciosJuguete() {
     )
 
     if (minimo && maximo) {
-
-        let InputSearchJuguetes = document.querySelector('#BuscarJuguetes');
-        let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
+        let InputSearchJuguete = document.querySelector('#BuscarJuguetes');
+        let BusquedaJuguete = InputSearchJuguete.value.toLowerCase();
         let apiAux = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
-        let checkedOrdenJuguete = document.querySelector('#asc_jug');
 
+        let JuguetesFiltrados = apiAux?.products.filter(juguete => {
+            juguete.nombre = juguete.nombre.toLowerCase();
+            juguete.descripcion = juguete.descripcion.toLowerCase();
+            return (juguete.nombre.indexOf(BusquedaJuguete) > -1 || juguete.descripcion.indexOf(BusquedaJuguete) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
+        })
 
-        if (apiAux.products.length != ApiJuguetes.products.length) {
+        let TiendaJuguetes = JuguetesFiltrados.map(juguete => {
+            juguete.nombre = juguete.nombre.charAt(0).toUpperCase() + juguete.nombre.slice(1)
+            juguete.descripcion = juguete.descripcion.charAt(0).toUpperCase() + juguete.descripcion.slice(1)
+            return { ...juguete }
+        })
 
-            let JuguetesFiltrados = apiAux.products.filter(juguete => {
-                juguete.nombre = juguete.nombre.toLowerCase();
-                juguete.descripcion = juguete.descripcion.toLowerCase();
-
-                return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
-            })
-
-            if (JuguetesFiltrados.length === 0) {
-                resetearTemplateJuguetes();
-                busquedaJugueteNoEncontrada();
-            } else {
-                let nombreProducto = new Array();
-                nombreProducto = JuguetesFiltrados.map(product => {
-                    return product.nombre
-                })
-                let api;
-                checkedOrdenJuguete.checked === true ? (
-                    api = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
-                ) : (
-                    api = await ApiFetch(urlApi, tipoJuguete, ordenDesc, '')
-                )
-
-                let productoOriginal = api?.products.filter(juguete => {
-                    return nombreProducto.includes(juguete.nombre.toLowerCase())
-                })
-
-                resetearTemplateJuguetes();
-                getProductsJuguetes(productoOriginal)
-            }
-        } else {
-            let JuguetesFiltrados = ApiJuguetes.products.filter(juguete => {
-                juguete.nombre = juguete.nombre.toLowerCase();
-                juguete.descripcion = juguete.descripcion.toLowerCase();
-
-                return (juguete.nombre.indexOf(BusquedaJuguetes) > -1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
-            })
-
-            if (JuguetesFiltrados.length === 0) {
-                resetearTemplateJuguetes();
-                busquedaJugueteNoEncontrada();
-            } else {
-                resetearTemplateJuguetes();
-                getProductsJuguetes(JuguetesFiltrados)
-            }
-        }
+        TiendaJuguetes.length === 0 ? (
+            resetearTemplateJuguetes(),
+            busquedaJugueteNoEncontrada()
+        ) : (
+            ordenarAsc.checked = false,
+            ordenDesc.checked = false,
+            resetearTemplateJuguetes(),
+            getProductsJuguetes(TiendaJuguetes)
+        )
     }
 }
 
@@ -525,108 +367,64 @@ async function filtrarOrdenarJuguetes() {
     let minimo = Number(document.querySelector('#precioMinimoJuguete').value);
     let maximo = Number(document.querySelector('#precioMaximoJuguete').value);
     let InputSearchJuguetes = document.querySelector('#BuscarJuguetes');
-    let BusquedaJuguetes = InputSearchJuguetes.value.toLowerCase();
-    let apiAux = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
-    let checkedOrdenJuguete = document.querySelector('#asc_jug');
+    let BusquedaJuguete = InputSearchJuguetes.value.toLowerCase();
+    let checkedOrdenJuguetes = document.querySelector('#asc_jug');
+    let apiAux;
+
+    checkedOrdenJuguetes.checked === true ? (
+        apiAux = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
+    ) : (
+        apiAux = await ApiFetch(urlApi, tipoJuguete, ordenDesc, '')
+    )
 
     if (minimo && maximo) {
 
-        if (apiAux.products.length != ApiJuguetes.products.length) {
-
-            let JuguetesFiltrados = apiAux.products.filter(juguete => {
-                juguete.nombre = juguete.nombre.toLowerCase();
-                juguete.descripcion = juguete.descripcion.toLowerCase();
-
-                return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
-            })
-
-            if (JuguetesFiltrados.length === 0) {
-                resetearTemplateJuguetes();
-                busquedaJugueteNoEncontrada();
-            } else {
-                let nombreProducto = new Array();
-                nombreProducto = JuguetesFiltrados.map(product => {
-                    return product.nombre
-                })
-                let api;
-                checkedOrdenJuguete.checked === true ? (
-                    api = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
-                ) : (
-                    api = await ApiFetch(urlApi, tipoJuguete, ordenDesc, '')
-                )
-
-                let productoOriginal = api?.products.filter(juguete => {
-                    return nombreProducto.includes(juguete.nombre.toLowerCase())
-                })
-
-                resetearTemplateJuguetes();
-                getProductsJuguetes(productoOriginal)
-            }
-        } else {
-
-            let JuguetesFiltrados = ApiJuguetes.products.filter(juguete => {
-                juguete.nombre = juguete.nombre.toLowerCase();
-                juguete.descripcion = juguete.descripcion.toLowerCase();
-
-                return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
-            })
-
-            if (JuguetesFiltrados.length === 0) {
-                resetearTemplateJuguetes();
-                busquedaJugueteNoEncontrada();
-            } else {
-                let nombreProducto = new Array();
-                nombreProducto = JuguetesFiltrados.map(product => {
-                    return product.nombre
-                })
-                let api;
-                checkedOrdenJuguete.checked === true ? (
-                    api = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
-                ) : (
-                    api = await ApiFetch(urlApi, tipoJuguete, ordenDesc, '')
-                )
-                let productoOriginal = api.products.filter(juguete => {
-                    return nombreProducto.includes(juguete.nombre.toLowerCase())
-                })
-                console.log(productoOriginal);
-                resetearTemplateJuguetes();
-                getProductsJuguetes(productoOriginal)
-            }
-        }
-    } else {
         let JuguetesFiltrados = apiAux.products.filter(juguete => {
             juguete.nombre = juguete.nombre.toLowerCase();
             juguete.descripcion = juguete.descripcion.toLowerCase();
-
-            return (juguete.nombre.indexOf(BusquedaJuguetes) > - 1 || juguete.descripcion.indexOf(BusquedaJuguetes) > -1);
+            return (juguete.nombre.indexOf(BusquedaJuguete) > -1 || juguete.descripcion.indexOf(BusquedaJuguete) > -1) && (juguete.precio >= minimo && juguete.precio <= maximo);
         })
 
-        if (JuguetesFiltrados.length === 0) {
-            resetearTemplateJuguetes();
-            busquedaJugueteNoEncontrada();
-        } else {
+        let TiendaJuguetes = JuguetesFiltrados.map(juguete => {
+            juguete.nombre = juguete.nombre.charAt(0).toUpperCase() + juguete.nombre.slice(1)
+            juguete.descripcion = juguete.descripcion.charAt(0).toUpperCase() + juguete.descripcion.slice(1)
+            return { ...juguete }
+        })
 
-            let nombreProducto = new Array();
-            nombreProducto = JuguetesFiltrados.map(product => {
-                return product.nombre
-            })
-            let api;
-            checkedOrdenJuguete.checked === true ? (
-                api = await ApiFetch(urlApi, tipoJuguete, ordenAsc, '')
-            ) : (
-                api = await ApiFetch(urlApi, tipoJuguete, ordenDesc, '')
-            )
+        TiendaJuguetes.length === 0 ? (
+            resetearTemplateJuguetes(),
+            busquedaJugueteNoEncontrada()
+        ) : (
+            resetearTemplateJuguetes(),
+            getProductsJuguetes(TiendaJuguetes)
+        )
 
-            let productoOriginal = api?.products.filter(juguete => {
-                return nombreProducto.includes(juguete.nombre.toLowerCase())
-            })
+    } else {
 
-            resetearTemplateJuguetes();
-            getProductsJuguetes(productoOriginal)
-        }
+        let JuguetesFiltrados = apiAux.products.filter(juguete => {
+            juguete.nombre = juguete.nombre.toLowerCase();
+            juguete.descripcion = juguete.descripcion.toLowerCase();
+            return (juguete.nombre.indexOf(BusquedaJuguete) > -1 || juguete.descripcion.indexOf(BusquedaJuguete) > -1);
+        })
+
+        let TiendaJuguetes = JuguetesFiltrados.map(juguete => {
+            juguete.nombre = juguete.nombre.charAt(0).toUpperCase() + juguete.nombre.slice(1)
+            juguete.descripcion = juguete.descripcion.charAt(0).toUpperCase() + juguete.descripcion.slice(1)
+            return { ...juguete }
+        })
+
+        TiendaJuguetes.length === 0 ? (
+            resetearTemplateJuguetes(),
+            busquedaJugueteNoEncontrada()
+        ) : (
+            resetearTemplateJuguetes(),
+            getProductsJuguetes(TiendaJuguetes)
+        )
+
     }
 }
 
+// REFRESCAR TEMPLATE
 async function limpiarTemplateMedicamento() {
     let precioMinimo = document.querySelector('#precioMinimo')
     let precioMaximo = document.querySelector('#precioMaximo')
@@ -645,7 +443,6 @@ async function limpiarTemplateMedicamento() {
     resetearTemplateMedicamentos();
     getProductsMedicamentos(apiMedicamentos?.products)
 }
-
 
 async function limpiarTemplateJuguetes() {
     let precioMinimo = document.querySelector('#precioMinimoJuguete')

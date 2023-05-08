@@ -117,6 +117,24 @@ p.card-text.mb-1 {
 
 }
 
+.btn-outline-success-send {
+    border: var(--main-bg-color) !important;
+    outline-style: auto;
+    outline-color: var(--main-bg-color) !important;
+    color: var(--main-bg-color) !important;
+
+}
+
+.success-btn {
+    color: white !important;
+    background: var(--main-bg-color) !important;
+}
+
+.btn-outline-success-send:hover {
+    color: white !important;
+    background: var(--main-bg-color) !important;
+}
+
 .btn-outline:hover {
     color: white !important;
     background: var(--green-accent) !important;

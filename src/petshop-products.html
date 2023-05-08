@@ -94,27 +94,39 @@
             <!-- Page content-->
             <div class="container-flex">
                 <div class="card-body">
-                    <nav>
-                        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-                            <button class="nav-link active" id="nav-medicamentos" data-bs-toggle="tab"
+                    <img src="../assets/img/logo.png" class="d-flex justify-content-end mt-2" height="80px"
+                        style="float: right;margin-right: 2%;" width="100" alt="logo">
+
+                    <div class="row">
+                        <h3 class="text-center mt-2 success" style="letter-spacing: 6px;">MINDY PETSHOP</h3>
+                        <h6 class="text-center mt-2 success" style="letter-spacing: 6px;">Tienda</h6>
+
+                    </div>
+                    <div>
+
+                        <ul class="nav nav-tabs justify-content-start p-3 mb-2 mt-1" id="nav-tab" role="tablist">
+                            <button class="nav-link active text-success me-4" id="nav-medicamentos" data-bs-toggle="tab"
                                 data-bs-target="#nav-medicamentos-tab" type="button" role="tab"
-                                aria-controls="nav-medicamentos" aria-selected="false" onclick="limpiarTemplateMedicamento()" >Farmacia</button>
-                            <button class="nav-link" id="nav-juguetes" data-bs-toggle="tab"
+                                aria-controls="nav-medicamentos" aria-selected="false"
+                                onclick="limpiarTemplateMedicamento()"><b>Farmacia</b></button>
+                            <button class="nav-link text-success" id="nav-juguetes" data-bs-toggle="tab"
                                 data-bs-target="#nav-juguetes-tab" type="button" role="tab" aria-controls="nav-juguetes"
-                                aria-selected="true" onclick="limpiarTemplateJuguetes()">Juguetes</button>
-                        </div>
-                    </nav>
+                                aria-selected="true" onclick="limpiarTemplateJuguetes()"><b>Juguetes</b></button>
+
+                        </ul>
+
+                    </div>
 
 
                     <div class="tab-content" id="nav-tabContent">
-                       
+
 
                         <div class="tab-pane fade show active" id="nav-medicamentos-tab" role="tabpanel"
                             aria-labelledby="nav-medicamentos" tabindex="0">
 
                             <!-- Main -->
                             <main class="container-fluid mt-2">
-                                <div class="form-group shadow p-4">
+                                <div class="form-group rounded color_primary shadow shadow shadow p-4">
                                     <div class="form-floating shadow">
                                         <input type="search" id="BuscarMedicamento" placeholder="Buscar producto"
                                             class="form-control form-control-sm" onkeyup="filtrar_medicamentos()" />
@@ -123,10 +135,10 @@
                                     </div>
                                 </div>
                                 <!-- Filtros -->
-                                <div class="row">
-                                    <div class="col-md-2">
+                                <div class="row p-3">
+                                    <div class="col-md-2 rounded-start  text-light color_primary shadow">
 
-                                        <h4>Filtrar por:</h4>
+                                        <h5 class="mt-3">Filtrar por:</h5>
                                         <hr>
 
                                         <h6>Precio:</h6>
@@ -138,35 +150,33 @@
                                             <input type="number" id="precioMaximo" class="form-control"
                                                 placeholder="Máximo" min="0">
                                         </div>
-                                        <button type="button" class="btn btn-success form-control"
+                                        <button type="button" class="btn btn-outline-light form-control"
                                             onclick="filtrarPrecios()">Filtrar precios</button>
                                         <hr>
                                         <h6>Ordenar Alfabéticamente:</h6>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()" type="radio" name="flexRadioDefault"
-                                                id="asc_med" >
+                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()"
+                                                type="radio" name="flexRadioDefault" id="asc_med">
                                             <label class="form-check-label" for="asc_med">
                                                 A-Z
                                             </label>
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()" type="radio" name="flexRadioDefault"
-                                                id="desc_med">
+                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()"
+                                                type="radio" name="flexRadioDefault" id="desc_med">
                                             <label class="form-check-label" for="desc_med">
                                                 Z-A
                                             </label>
 
                                         </div>
-                                   
-
                                     </div>
 
 
 
-                                    <div class="col-md-10">
+                                    <div class="col-md-10 rounded-end color_primary shadow">
                                         <!-- Cards productos -->
-                                        <div class="row" id="cards-container-medicamentos">
+                                        <div class="row mt-2" id="cards-container-medicamentos">
                                         </div>
                                     </div>
 
@@ -182,10 +192,10 @@
                         <div class="tab-pane fade" id="nav-juguetes-tab" role="tabpanel"
                             aria-labelledby="nav-juguetes-tab" tabindex="0">
 
-                              <!-- Main -->
-                              <main class="container-fluid mt-2">
-                                <div class="form-group shadow p-4">
-                                    <div class="form-floating shadow">
+                            <!-- Main -->
+                            <main class="container-fluid mt-2">
+                                <div class="form-group rounded color_primary shadow shadow p-4">
+                                    <div class="form-floating rounded shadow">
                                         <input type="search" id="BuscarJuguetes" placeholder="Buscar producto"
                                             class="form-control form-control-sm" onkeyup="filtrar_juguetes()" />
                                         <label class="form-label" for="BuscarJuguetes">Buscar
@@ -193,10 +203,10 @@
                                     </div>
                                 </div>
                                 <!-- Filtros -->
-                                <div class="row">
-                                    <div class="col-md-2">
+                                <div class="row p-3">
+                                    <div class="col-md-2 rounded-start text-light color_primary shadow">
 
-                                        <h4>Filtrar por:</h4>
+                                        <h5 class="mt-3">Filtrar por:</h5>
                                         <hr>
 
                                         <h6>Precio:</h6>
@@ -208,34 +218,34 @@
                                             <input type="number" id="precioMaximoJuguete" class="form-control"
                                                 placeholder="Máximo" min="0">
                                         </div>
-                                        <button type="button" class="btn btn-success form-control"
+                                        <button type="button" class="btn btn-outline-light form-control"
                                             onclick="filtrarPreciosJuguete()">Filtrar precios</button>
                                         <hr>
                                         <h6>Ordenar Alfabéticamente:</h6>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()" type="radio" name="flexRadioDefault"
-                                                id="asc_jug" checked>
+                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()"
+                                                type="radio" name="flexRadioDefault" id="asc_jug" checked>
                                             <label class="form-check-label" for="asc_jug">
                                                 A-Z
                                             </label>
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()" type="radio" name="flexRadioDefault"
-                                                id="desc_jug">
+                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()"
+                                                type="radio" name="flexRadioDefault" id="desc_jug">
                                             <label class="form-check-label" for="desc_jug">
                                                 Z-A
                                             </label>
 
                                         </div>
-                                       
+
 
                                     </div>
 
 
-                                    <div class="col-md-10">
+                                    <div class="col-md-10 rounded-end color_primary shadow">
                                         <!-- Cards productos -->
-                                        <div class="row" id="cards-container-juguetes">
+                                        <div class="row mt-2" id="cards-container-juguetes">
                                         </div>
                                     </div>
                                 </div>
@@ -243,6 +253,7 @@
                             </main>
                             <!-- Main -->
                         </div>
+
                     </div>
 
 
@@ -253,7 +264,7 @@
                 <footer class="py-5 shadow text-light">
                     <div class="container-flex">
                         <div class="row text-center">
-                            <div class="col-lg-6 mb-5 mb-lg-0">
+                            <div class="col-md-6 mb-5 mb-lg-0">
                                 <h4 class="text-uppercase mb-4 text-light">Redes sociales</h4>
                                 <ul class="list-inline">
                                     <li class="list-inline-item my-3">
@@ -278,7 +289,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-md-6">
                                 <h4 class="text-uppercase mb-4 text-light">Contacto</h4>
                                 <p class="mb-3 text-light"><i class="fas fa-envelope mr-2 text-light"></i>
                                     info@example.com</p>
@@ -287,7 +298,9 @@
                             </div>
                         </div>
                         <div class="text-center mt-5 mb-0">
-                            <p class="text-light"> © 2023 Green Team - Robert González | Andy Campo | Akwe Ulcue - Todos
+                            <p class="text-light"> © 2023 Green Team - Robert González | Andy Campo | Akwe Ulcue
+                                -
+                                Todos
                                 los derechos
                                 reservados.</p>
                         </div>

@@ -32,16 +32,16 @@ function login() {
 
     if (username.value === adminUser && password.value === passwordUser) {
         Swal.fire({
-            title: 'Success!',
+            title: 'Login - Administrador',
             text: 'Inicio de sesión exitoso!',
             icon: 'success',
-            confirmButtonText: 'Ok',
-            timer: 1000,
+            confirmButtonText: 'Bienvenido',
+            timer: 2000,
         })
 
         setTimeout(() => {
             window.location = "petshop-new-products.html"
-        }, 1000);
+        }, 2000);
 
         localStorage.setItem('username', JSON.stringify(username.value));
 
