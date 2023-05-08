@@ -11,9 +11,14 @@
     background-color: var(--main-bg-color);
 }
 
-.color_primary{
+.color_primary {
     background-color: var(--main-bg-color);
 }
+
+.success {
+    color: var(--main-bg-color) !important;
+}
+
 .nav-link {
     color: var(--text-color);
     font-weight: 600;
@@ -29,11 +34,11 @@ a {
     cursor: pointer;
 }
 
-.logo{
+.logo {
     height: 12rem;
 }
 
-.logoSidebar{
+.logoSidebar {
     height: 8rem;
 }
 
@@ -55,11 +60,14 @@ a {
 
 .card:hover {
     transform: translateY(-5px);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px !important;
 }
 
-.card-img-top {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+
+img.card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
 
 .card-title {
@@ -70,15 +78,20 @@ a {
 
 .card-text {
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-size: 12px;
     max-height: 150px;
     overflow-y: auto;
 }
-.btn-icon{
+
+p.card-text.mb-1 {
+    max-height: 200px;
+}
+
+.btn-icon {
     color: var(--main-bg-color);
 }
 
-.btn-success{
+.btn-success {
     background: var(--main-bg-color) !important;
 }
 
@@ -87,8 +100,44 @@ a {
     border: none;
 }
 
-.btn-stock{
-    background-color: #FFA500!important;;
+.btn-stock {
+    background-color: #FFA500 !important;
+    ;
+}
+
+.sucess_dark {
+    color: var(--green-accent) !important;
+}
+
+.btn-outline {
+    border: var(--green-accent) !important;
+    outline-style: auto;
+    outline-color: var(--green-accent) !important;
+    color: var(--green-accent) !important;
+
+}
+
+.btn-outline-success-send {
+    border: var(--main-bg-color) !important;
+    outline-style: auto;
+    outline-color: var(--main-bg-color) !important;
+    color: var(--main-bg-color) !important;
+
+}
+
+.success-btn {
+    color: white !important;
+    background: var(--main-bg-color) !important;
+}
+
+.btn-outline-success-send:hover {
+    color: white !important;
+    background: var(--main-bg-color) !important;
+}
+
+.btn-outline:hover {
+    color: white !important;
+    background: var(--green-accent) !important;
 }
 
 .btn-primary:hover {
