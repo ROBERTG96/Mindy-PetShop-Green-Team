@@ -98,10 +98,10 @@
                         <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-medicamentos" data-bs-toggle="tab"
                                 data-bs-target="#nav-medicamentos-tab" type="button" role="tab"
-                                aria-controls="nav-medicamentos" aria-selected="false">Farmacia</button>
+                                aria-controls="nav-medicamentos" aria-selected="false" onclick="limpiarTemplateMedicamento()" >Farmacia</button>
                             <button class="nav-link" id="nav-juguetes" data-bs-toggle="tab"
                                 data-bs-target="#nav-juguetes-tab" type="button" role="tab" aria-controls="nav-juguetes"
-                                aria-selected="true">Juguetes</button>
+                                aria-selected="true" onclick="limpiarTemplateJuguetes()">Juguetes</button>
                         </div>
                     </nav>
 
@@ -144,22 +144,21 @@
                                         <h6>Ordenar Alfabéticamente:</h6>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="asc_med" checked>
+                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()" type="radio" name="flexRadioDefault"
+                                                id="asc_med" >
                                             <label class="form-check-label" for="asc_med">
                                                 A-Z
                                             </label>
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()" type="radio" name="flexRadioDefault"
                                                 id="desc_med">
                                             <label class="form-check-label" for="desc_med">
                                                 Z-A
                                             </label>
 
                                         </div>
-                                        <button type="button" class="btn btn-success form-control"
-                                            onclick="filtrarOrdenar()"> Ordenar</button>
+                                   
 
                                     </div>
 
@@ -215,22 +214,21 @@
                                         <h6>Ordenar Alfabéticamente:</h6>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()" type="radio" name="flexRadioDefault"
                                                 id="asc_jug" checked>
                                             <label class="form-check-label" for="asc_jug">
                                                 A-Z
                                             </label>
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()" type="radio" name="flexRadioDefault"
                                                 id="desc_jug">
                                             <label class="form-check-label" for="desc_jug">
                                                 Z-A
                                             </label>
 
                                         </div>
-                                        <button type="button" class="btn btn-success form-control"
-                                            onclick="filtrarOrdenarJuguetes()"> Ordenar</button>
+                                       
 
                                     </div>
 
