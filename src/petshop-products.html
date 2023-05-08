@@ -18,8 +18,7 @@
 
 
     <!-- Sweet alert -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
-        integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
 
     <title>PetShop - Mindy</title>
 </head>
@@ -27,13 +26,11 @@
 <body>
     <!-- Modal shopping cart -->
 
-    <div class="modal fade" id="modalShoppingCart" tabindex="-1" aria-labelledby="shoppingCartModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="modalShoppingCart" tabindex="-1" aria-labelledby="shoppingCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="shoppingCartModalLabel">Carrito de compras <i
-                            class="bi bi-cart-check-fill"></i></h1>
+                    <h1 class="modal-title fs-5" id="shoppingCartModalLabel">Carrito de compras <i class="bi bi-cart-check-fill"></i></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -66,24 +63,15 @@
             </div>
             <div class="list-group list-group-flush">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item  list-group-item-action list-group-item-light p-3"
-                        href="./petshop-home.html" data-toggle="tooltip" title="Inicio" data-bs-placement="right"><i
+                    <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-home.html" data-toggle="tooltip" title="Inicio" data-bs-placement="right"><i
                             class="bi bi-house-fill btn-icon"></i> Inicio</a>
-                    <a class="list-group-item  list-group-item-action list-group-item-light p-3"
-                        href="./petshop-products.html" data-toggle="tooltip" title="Productos"
-                        data-bs-placement="right"><i class="bi bi-shop btn-icon"></i> Tienda</a>
-                    <a class="list-group-item  list-group-item-action list-group-item-light p-3"
-                        href="./petshop-shopping-card.html" data-toggle="tooltip" title="Carrito"
-                        data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#modalShoppingCart"><i
+                    <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-products.html" data-toggle="tooltip" title="Productos" data-bs-placement="right"><i class="bi bi-shop btn-icon"></i> Tienda</a>
+                    <a class="list-group-item  list-group-item-action list-group-item-light p-3" href="./petshop-shopping-card.html" data-toggle="tooltip" title="Carrito" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#modalShoppingCart"><i
                             class="bi bi-cart-check-fill btn-icon"></i> Carrito
                         <span class="badge bg-danger rounded-pill cart-item-count" id="numItemsCarritox1">0</span>
                     </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                        href="./petshop-contact.html" data-toggle="tooltip" title="Contacto"
-                        data-bs-placement="right"><i class="bi bi-person-lines-fill btn-icon"></i> Contactanos</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3"
-                        href="./petshop-aboutUs.html" data-toggle="tooltip" title="Sobre nosotros"
-                        data-bs-placement="right"><i class="bi bi-person-vcard-fill btn-icon"></i> Sobre Nosotros</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-contact.html" data-toggle="tooltip" title="Contacto" data-bs-placement="right"><i class="bi bi-person-lines-fill btn-icon"></i> Contactanos</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="./petshop-aboutUs.html" data-toggle="tooltip" title="Sobre nosotros" data-bs-placement="right"><i class="bi bi-person-vcard-fill btn-icon"></i> Sobre Nosotros</a>
 
                 </div>
             </div>
@@ -94,37 +82,26 @@
             <nav class="navbar navbar-expand-lg navbar-light border-bottom">
                 <div class="container-fluid">
                     <button class="btn btn-light" id="sidebarToggle"><i class="bi bi-list"></i></button>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation"><span
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                             class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-home.html"
-                                    data-toggle="tooltip" title="Inicio" data-bs-placement="bottom"><i
+                            <li class="nav-item active"><a class="nav-link text-light" href="./petshop-home.html" data-toggle="tooltip" title="Inicio" data-bs-placement="bottom"><i
                                         class="bi bi-house-fill"></i></a>
                             </li>
-                            <li class="nav-item active"><a class="nav-link text-light" href="#" data-toggle="tooltip"
-                                    title="Tienda" data-bs-placement="bottom"><i class="bi bi-shop"></i></a></li>
-                            <li class="nav-item active"> <a class="nav-link text-light"
-                                    href="./petshop-shopping-card.html" data-toggle="tooltip" title="Carrito"
-                                    data-bs-placement="bottom" data-bs-toggle="modal"
-                                    data-bs-target="#modalShoppingCart"><i class="bi bi-cart-check-fill"></i>
+                            <li class="nav-item active"><a class="nav-link text-light" href="#" data-toggle="tooltip" title="Tienda" data-bs-placement="bottom"><i class="bi bi-shop"></i></a></li>
+                            <li class="nav-item active"> <a class="nav-link text-light" href="./petshop-shopping-card.html" data-toggle="tooltip" title="Carrito" data-bs-placement="bottom" data-bs-toggle="modal" data-bs-target="#modalShoppingCart"><i class="bi bi-cart-check-fill"></i>
                                     <span class="badge bg-danger rounded-pill cart-item-count"
                                         id="numItemsCarritox2">0</span>
                                 </a></li>
                             <li class="nav-item active">
-                                <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto"
-                                    data-bs-placement="bottom"> <i class="bi bi-person-lines-fill"></i>
+                                <a class="nav-link text-light" href="#" data-toggle="tooltip" title="Contacto" data-bs-placement="bottom"> <i class="bi bi-person-lines-fill"></i>
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#"
-                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="bi bi-person-fill-gear"></i> </a>
-                                <div class="dropdown-menu dropdown-menu-end" id="mostrar"
-                                    aria-labelledby="navbarDropdown">
+                                <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-fill-gear"></i> </a>
+                                <div class="dropdown-menu dropdown-menu-end" id="mostrar" aria-labelledby="navbarDropdown">
 
                                 </div>
                             </li>
@@ -136,22 +113,14 @@
             <div class="container-flex">
                 <div class="card-body">
                     <div class="row">
-                        <h3 class="text-center mt-2 success" style="letter-spacing: 6px;">MINDY PETSHOP</h3>
-                        <h6 class="text-center mt-2 success" style="letter-spacing: 6px;">Tienda</h6>
-
+                        <h3 class="text-center mt-2 success text-header-store" style="letter-spacing: 6px;">MINDY PETSHOP</h3>
                     </div>
-                    <img src="../assets/img/logo.png" class="d-flex justify-content-end mt-2" height="80px"
-                    style="float: right;margin-right: 2%;" width="100" alt="logo">
+
 
                     <div>
                         <ul class="nav nav-tabs justify-content-start p-3 mb-2 mt-1" id="nav-tab" role="tablist">
-                            <button class="nav-link active text-success me-4" id="nav-medicamentos" data-bs-toggle="tab"
-                                data-bs-target="#nav-medicamentos-tab" type="button" role="tab"
-                                aria-controls="nav-medicamentos" aria-selected="false"
-                                onclick="limpiarTemplateMedicamento()"><b>Farmacia</b></button>
-                            <button class="nav-link text-success" id="nav-juguetes" data-bs-toggle="tab"
-                                data-bs-target="#nav-juguetes-tab" type="button" role="tab" aria-controls="nav-juguetes"
-                                aria-selected="true" onclick="limpiarTemplateJuguetes()"><b>Juguetes</b></button>
+                            <button class="nav-link active text-success me-4" id="nav-medicamentos" data-bs-toggle="tab" data-bs-target="#nav-medicamentos-tab" type="button" role="tab" aria-controls="nav-medicamentos" aria-selected="false" onclick="limpiarTemplateMedicamento()"><b>Farmacia</b></button>
+                            <button class="nav-link text-success" id="nav-juguetes" data-bs-toggle="tab" data-bs-target="#nav-juguetes-tab" type="button" role="tab" aria-controls="nav-juguetes" aria-selected="true" onclick="limpiarTemplateJuguetes()"><b>Juguetes</b></button>
                         </ul>
                     </div>
 
@@ -159,15 +128,13 @@
                     <div class="tab-content" id="nav-tabContent">
 
 
-                        <div class="tab-pane fade show active" id="nav-medicamentos-tab" role="tabpanel"
-                            aria-labelledby="nav-medicamentos" tabindex="0">
+                        <div class="tab-pane fade show active" id="nav-medicamentos-tab" role="tabpanel" aria-labelledby="nav-medicamentos" tabindex="0">
 
                             <!-- Main -->
                             <main class="container-fluid mt-2">
                                 <div class="form-group rounded color_primary shadow shadow shadow p-4">
                                     <div class="form-floating shadow">
-                                        <input type="search" id="BuscarMedicamento" placeholder="Buscar producto"
-                                            class="form-control form-control-sm" onkeyup="filtrar_medicamentos()" />
+                                        <input type="search" id="BuscarMedicamento" placeholder="Buscar producto" class="form-control form-control-sm" onkeyup="filtrar_medicamentos()" />
                                         <label class="form-label" for="BuscarMedicamento">Buscar
                                             producto</label>
                                     </div>
@@ -181,28 +148,23 @@
 
                                         <h6>Precio:</h6>
                                         <div class="form-group">
-                                            <input type="number" id="precioMinimo" class="form-control"
-                                                placeholder="Mínimo" min="0">
+                                            <input type="number" id="precioMinimo" class="form-control" placeholder="Mínimo" min="0">
                                         </div>
                                         <div class="form-group mt-3 mb-2">
-                                            <input type="number" id="precioMaximo" class="form-control"
-                                                placeholder="Máximo" min="0">
+                                            <input type="number" id="precioMaximo" class="form-control" placeholder="Máximo" min="0">
                                         </div>
-                                        <button type="button" class="btn btn-outline-light form-control"
-                                            onclick="filtrarPrecios()">Filtrar precios</button>
+                                        <button type="button" class="btn btn-outline-light form-control" onclick="filtrarPrecios()">Filtrar precios</button>
                                         <hr>
                                         <h6>Ordenar Alfabéticamente:</h6>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()"
-                                                type="radio" name="flexRadioDefault" id="asc_med">
+                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()" type="radio" name="flexRadioDefault" id="asc_med">
                                             <label class="form-check-label" for="asc_med">
                                                 A-Z
                                             </label>
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()"
-                                                type="radio" name="flexRadioDefault" id="desc_med">
+                                            <input class="form-check-input" onclick="filtrarOrdenarMedicamentos()" type="radio" name="flexRadioDefault" id="desc_med">
                                             <label class="form-check-label" for="desc_med">
                                                 Z-A
                                             </label>
@@ -222,6 +184,12 @@
 
 
                                 <!-- Filtros -->
+                                <button type="button" class="btn btn-primary btn-floating rounded-circle d-flex align-items-center justify-content-center btn-float-cart" data-bs-toggle="modal" data-bs-target="#modalShoppingCart">
+                                    <div class="cart-icon">
+                                      <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="badge bg-danger rounded-pill cart-item-count cart-item-count-btn-float" id="numItemsCarritox3">0</div>
+                                  </button>
 
                             </main>
 
@@ -233,8 +201,7 @@
                             <main class="container-fluid mt-2">
                                 <div class="form-group rounded color_primary shadow shadow p-4">
                                     <div class="form-floating rounded shadow">
-                                        <input type="search" id="BuscarJuguetes" placeholder="Buscar producto"
-                                            class="form-control form-control-sm" onkeyup="filtrar_juguetes()" />
+                                        <input type="search" id="BuscarJuguetes" placeholder="Buscar producto" class="form-control form-control-sm" onkeyup="filtrar_juguetes()" />
                                         <label class="form-label" for="BuscarJuguetes">Buscar
                                             producto</label>
                                     </div>
@@ -248,28 +215,23 @@
 
                                         <h6>Precio:</h6>
                                         <div class="form-group">
-                                            <input type="number" id="precioMinimoJuguete" class="form-control"
-                                                placeholder="Mínimo" min="0">
+                                            <input type="number" id="precioMinimoJuguete" class="form-control" placeholder="Mínimo" min="0">
                                         </div>
                                         <div class="form-group mt-3 mb-2">
-                                            <input type="number" id="precioMaximoJuguete" class="form-control"
-                                                placeholder="Máximo" min="0">
+                                            <input type="number" id="precioMaximoJuguete" class="form-control" placeholder="Máximo" min="0">
                                         </div>
-                                        <button type="button" class="btn btn-outline-light form-control"
-                                            onclick="filtrarPreciosJuguete()">Filtrar precios</button>
+                                        <button type="button" class="btn btn-outline-light form-control" onclick="filtrarPreciosJuguete()">Filtrar precios</button>
                                         <hr>
                                         <h6>Ordenar Alfabéticamente:</h6>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()"
-                                                type="radio" name="flexRadioDefault" id="asc_jug" checked>
+                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()" type="radio" name="flexRadioDefault" id="asc_jug" checked>
                                             <label class="form-check-label" for="asc_jug">
                                                 A-Z
                                             </label>
                                         </div>
                                         <div class="form-check mb-2">
-                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()"
-                                                type="radio" name="flexRadioDefault" id="desc_jug">
+                                            <input class="form-check-input" onclick="filtrarOrdenarJuguetes()" type="radio" name="flexRadioDefault" id="desc_jug">
                                             <label class="form-check-label" for="desc_jug">
                                                 Z-A
                                             </label>
@@ -279,7 +241,6 @@
 
                                     </div>
 
-
                                     <div class="col-md-10 rounded-end color_primary shadow">
                                         <!-- Cards productos -->
                                         <div class="row mt-2" id="cards-container-juguetes">
@@ -287,6 +248,7 @@
                                     </div>
                                 </div>
                                 <!-- Filtros -->
+
                             </main>
                             <!-- Main -->
                         </div>
@@ -328,20 +290,15 @@
                             </div>
                             <div class="col-md-6">
                                 <h4 class="text-uppercase mb-4 text-light">Contacto</h4>
-                                <p class="mb-3 text-light"><i class="fas fa-envelope mr-2 text-light"></i>
-                                    info@example.com
+                                <p class="mb-3 text-light"><i class="fas fa-envelope mr-2 text-light"></i> info@example.com
                                 </p>
-                                <p class="mb-0 text-light"><i class="fas fa-phone mr-2 text-light"></i> +1 (555)
-                                    123-4567
+                                <p class="mb-0 text-light"><i class="fas fa-phone mr-2 text-light"></i> +1 (555) 123-4567
                                 </p>
                             </div>
                         </div>
                         <div class="text-center mt-5 mb-0">
-                            <p class="text-light"> © 2023 Green Team - Robert González | Andy Campo | Akwe Ulcue
-                                -
-                                Todos
-                                los derechos
-                                reservados.</p>
+                            <p class="text-light"> © 2023 Green Team - Robert González | Andy Campo | Akwe Ulcue - Todos los derechos reservados.
+                            </p>
                         </div>
                     </div>
                 </footer>
@@ -366,7 +323,7 @@
 
 
         <script>
-            $(function () {
+            $(function() {
                 $('[data-toggle="tooltip"]').tooltip();
             });
         </script>
