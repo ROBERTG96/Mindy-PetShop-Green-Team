@@ -60,7 +60,7 @@ function getProductsMedicamentos(Medicamentos) {
         card.className = "col-md-3 mb-4";
         card.innerHTML = `
     <div class="card rounded shadow h-100">
-    <img src="${medicamento.imagen}" class="card-img-top" alt="${medicamento.nombre}">
+    <img src="${medicamento.imagen}" onclick="detalleProducto('${medicamento._id}')" class="card-img-top" alt="${medicamento.nombre}">
     <div class="card-body color_primary text-light mb-3">
         <div class="row">
             <span class="card-subtitle font-weight-bold mb-3"><b> ${medicamento.nombre}</b></span>
@@ -93,7 +93,7 @@ function getProductsJuguetes(Juguetes) {
         card.className = "col-md-3 mb-4";
         card.innerHTML = `
     <div class="card rounded shadow h-100">
-    <img src="${Juguete.imagen}" class="card-img-top" alt="${Juguete.nombre}">
+    <img src="${Juguete.imagen}" onclick="detalleProducto('${Juguete._id}')" class="card-img-top" alt="${Juguete.nombre}">
     <div class="card-body color_primary text-light mb-3">
         <div class="row">
             <span class="card-subtitle font-weight-bold mb-3"><b> ${Juguete.nombre}</b></span>
@@ -590,4 +590,12 @@ async function limpiarTemplateJuguetes() {
 
     resetearTemplateJuguetes();
     getProductsJuguetes(ApiJuguetes?.products)
+}
+
+
+// Detalle producto
+
+function detalleProducto(id) {
+    console.log('id a buscar:', id);
+    window.location.href = `petshop-details.html?id=${id}`;
 }
