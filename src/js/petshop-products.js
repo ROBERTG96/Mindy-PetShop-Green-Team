@@ -5,30 +5,8 @@ const tipoMedicamento = '?tipo=medicamento';
 const tipoJuguete = '?tipo=juguete';
 const querys = '';
 
-
 let ApiMedicamentos = new Array();
 let ApiJuguetes = new Array();
-
-
-async function ApiFetch() {
-    let response = await fetch(urlApi);
-    response = await response.json();
-    return response;
-}
-
-async function getApi(urlApi) {
-    try {
-        let response = await fetch(urlApi);
-        response = await response.json();
-        Api = response.products;
-        ApiMedicamentos = response.products.filter(categoria => categoria.tipo === "Medicamento");
-        ApiJuguetes = response.products.filter(categoria => categoria.tipo === "Juguete");
-        getProductsMedicamentos(ApiMedicamentos);
-        getProductsJuguetes(ApiJuguetes);
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 // QUERY API STARTED
 async function ApiFetch(url, tipo, orden, querys) {
@@ -56,9 +34,9 @@ const cardsContainerJuguetes = document.getElementById("cards-container-juguetes
 // TEMPLATE FARMACIA
 function getProductsMedicamentos(Medicamentos) {
     Medicamentos.forEach((medicamento) => {
-                let card = document.createElement("div");
-                card.className = "col-md-3 mb-4";
-                card.innerHTML = `
+        let card = document.createElement("div");
+        card.className = "col-md-3 mb-4";
+        card.innerHTML = `
     <div class="card rounded shadow h-100">
     <img src="${medicamento.imagen}" onclick="detalleProducto('${medicamento._id}')" class="card-img-top" alt="${medicamento.nombre}">
     <div class="card-body color_primary text-light mb-3">
@@ -130,8 +108,6 @@ const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
 const procesarCompra = document.querySelector("#procesarCompra");
 const activarFuncion = document.querySelector("#activarFuncion");
-
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -221,7 +197,7 @@ const mostrarCarrito = () => {
     numItemsCarritox2.textContent = carrito.length;
     numItemsCarritox3.textContent = carrito.length;
     numItemsCarritox4.textContent = carrito.length;
-    
+
     guardarStorage();
 }
 
@@ -634,35 +610,35 @@ function mostrarDetalleVenta() {
     const tbody = tablaVenta.querySelector("tbody");
     const filasAnteriores = tbody.querySelectorAll("tr");
     filasAnteriores.forEach((fila) => fila.remove());
-  
+
     let total = 0;
-  
-      carrito.forEach((producto) => {
-      const fila = document.createElement("tr");
-      const imagenCelda = document.createElement("td");
-      const imagen = document.createElement("img");
-      imagen.src = producto.imagen;
-      imagenCelda.appendChild(imagen);
-      fila.appendChild(imagenCelda);
-      const nombreCelda = document.createElement("td");
-      nombreCelda.textContent = producto.nombre;
-      fila.appendChild(nombreCelda);
-      const precioCelda = document.createElement("td");
-      precioCelda.textContent = producto.precio;
-      fila.appendChild(precioCelda);
-      const cantidadCelda = document.createElement("td");
-      cantidadCelda.textContent = producto.cantidad;
-      fila.appendChild(cantidadCelda);
-      const subtotalCelda = document.createElement("td");
-      subtotalCelda.textContent = cantidadCelda.textContent * precioCelda.textContent;
-      fila.appendChild(subtotalCelda);
-      total += producto.subtotal;
-      tbody.appendChild(fila);
+
+    carrito.forEach((producto) => {
+        const fila = document.createElement("tr");
+        const imagenCelda = document.createElement("td");
+        const imagen = document.createElement("img");
+        imagen.src = producto.imagen;
+        imagenCelda.appendChild(imagen);
+        fila.appendChild(imagenCelda);
+        const nombreCelda = document.createElement("td");
+        nombreCelda.textContent = producto.nombre;
+        fila.appendChild(nombreCelda);
+        const precioCelda = document.createElement("td");
+        precioCelda.textContent = producto.precio;
+        fila.appendChild(precioCelda);
+        const cantidadCelda = document.createElement("td");
+        cantidadCelda.textContent = producto.cantidad;
+        fila.appendChild(cantidadCelda);
+        const subtotalCelda = document.createElement("td");
+        subtotalCelda.textContent = cantidadCelda.textContent * precioCelda.textContent;
+        fila.appendChild(subtotalCelda);
+        total += producto.subtotal;
+        tbody.appendChild(fila);
     });
-  
+
     let ventaCarrito = carrito.map(venta => {
         return venta.cantidad * venta.precio;
-    }).reduce((acc,val)=>{
+    }).reduce((acc, val) => {
         return acc + val;
     })
 
@@ -670,27 +646,27 @@ function mostrarDetalleVenta() {
     console.log(ventaCarrito);
 
     document.getElementById("totalProceso").textContent = ventaCarrito;
-  }
-  
-  document.addEventListener("DOMContentLoaded", () => {
+}
+
+document.addEventListener("DOMContentLoaded", () => {
     mostrarDetalleVenta();
-  });
+});
 
 
-  procesarCompra.addEventListener("click", () => {
+procesarCompra.addEventListener("click", () => {
     if (carrito.length === 0) {
-      Swal.fire({
-        title: "Carrito vacío",
-        text: "¡Debes agregar productos para procesar la compra!",
-        icon: "warning",
-        confirmButtonText: "Aceptar",
-      });
+        Swal.fire({
+            title: "Carrito vacío",
+            text: "¡Debes agregar productos para procesar la compra!",
+            icon: "warning",
+            confirmButtonText: "Aceptar",
+        });
     } else {
-      location.href = "petshop-purchase.html";
-    }
-  });
+        location.href = "petshop-purchase.html";
+    }
+});
 
-  function finalizarCompra() {
+function finalizarCompra() {
     // Mostrar una alerta de SweetAlert
     Swal.fire({
         title: '¿Está seguro de tu compra?',
@@ -705,14 +681,16 @@ function mostrarDetalleVenta() {
         // Si el usuario confirma la acción, vaciar el carrito
         if (vaciar.isConfirmed) {
             carrito = [];
-            
             mostrarCarrito();
             Swal.fire(
                 '¡Compra exitosa!',
                 'Gracias por tu compra.',
                 'success'
             )
-            location.href = "petshop-products.html"
+
         }
+
+       location.href = 'petshop-products.html';
+
     });
-  }
+}
