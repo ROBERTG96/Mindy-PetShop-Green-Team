@@ -313,3 +313,8 @@ footer a:hover {
     height: 50px;
     transition: all 0.2s;
 }
+
+tr>td>img {
+    max-height: 150px;
+    max-width: 150px;
+}

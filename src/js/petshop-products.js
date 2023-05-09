@@ -128,20 +128,16 @@ const numItemsCarritox3 = document.querySelector('#numItemsCarritox3');
 const numItemsCarritox4 = document.querySelector('#numItemsCarritox4');
 const vaciarCarrito = document.querySelector('#vaciarCarrito');
 const precioTotal = document.querySelector("#precioTotal");
-const procesarCompra = document.querySelector("#procesarCompra")
+const procesarCompra = document.querySelector("#procesarCompra");
 const activarFuncion = document.querySelector("#activarFuncion");
 
 
-if (activarFuncion === true) {
-    activarFuncion.addEventListener('click' , procesarPedido);
-}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     carrito = JSON.parse(localStorage.getItem('carrito'));
     mostrarCarrito();
 })
-
-
 
 vaciarCarrito.addEventListener('click', () => {
     // Mostrar una alerta de SweetAlert
@@ -168,18 +164,8 @@ vaciarCarrito.addEventListener('click', () => {
     });
 });
 
-procesarCompra.addEventListener('click' , () => {
-    if (carrito.length === 0) {
-       Swal.fire({
-           title: 'Carrito vacío',
-           text: '¡Debes agregar productos para procesar la compra!',
-           icon: 'warning',
-           confirmButtonText: 'Aceptar'
-       });
-    }else{
-        location.href = "petshop-purchase.html"
-    }
-});
+
+
 
 async function agregarAlCarrito(idProducto) {
     const existeProductoEnCarrito = carrito.some(prod => prod._id === idProducto)
@@ -642,3 +628,91 @@ function detalleProducto(id) {
     window.location.href = `petshop-details.html?id=${id}`;
     procesarPedido();
 }
+
+function mostrarDetalleVenta() {
+    const tablaVenta = document.getElementById("lista-compra");
+    const tbody = tablaVenta.querySelector("tbody");
+    const filasAnteriores = tbody.querySelectorAll("tr");
+    filasAnteriores.forEach((fila) => fila.remove());
+  
+    let total = 0;
+  
+      carrito.forEach((producto) => {
+      const fila = document.createElement("tr");
+      const imagenCelda = document.createElement("td");
+      const imagen = document.createElement("img");
+      imagen.src = producto.imagen;
+      imagenCelda.appendChild(imagen);
+      fila.appendChild(imagenCelda);
+      const nombreCelda = document.createElement("td");
+      nombreCelda.textContent = producto.nombre;
+      fila.appendChild(nombreCelda);
+      const precioCelda = document.createElement("td");
+      precioCelda.textContent = producto.precio;
+      fila.appendChild(precioCelda);
+      const cantidadCelda = document.createElement("td");
+      cantidadCelda.textContent = producto.cantidad;
+      fila.appendChild(cantidadCelda);
+      const subtotalCelda = document.createElement("td");
+      subtotalCelda.textContent = cantidadCelda.textContent * precioCelda.textContent;
+      fila.appendChild(subtotalCelda);
+      total += producto.subtotal;
+      tbody.appendChild(fila);
+    });
+  
+    let ventaCarrito = carrito.map(venta => {
+        return venta.cantidad * venta.precio;
+    }).reduce((acc,val)=>{
+        return acc + val;
+    })
+
+
+    console.log(ventaCarrito);
+
+    document.getElementById("totalProceso").textContent = ventaCarrito;
+  }
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    mostrarDetalleVenta();
+  });
+
+
+  procesarCompra.addEventListener("click", () => {
+    if (carrito.length === 0) {
+      Swal.fire({
+        title: "Carrito vacío",
+        text: "¡Debes agregar productos para procesar la compra!",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+      });
+    } else {
+      location.href = "petshop-purchase.html";
+    }
+  });
+
+  function finalizarCompra() {
+    // Mostrar una alerta de SweetAlert
+    Swal.fire({
+        title: '¿Está seguro de tu compra?',
+        text: '¿Está seguro de que quiere finalizar tu compra?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, ¡estoy seguro!',
+        dangerMode: true,
+    }).then((vaciar) => {
+        // Si el usuario confirma la acción, vaciar el carrito
+        if (vaciar.isConfirmed) {
+            carrito = [];
+            
+            mostrarCarrito();
+            Swal.fire(
+                '¡Compra exitosa!',
+                'Gracias por tu compra.',
+                'success'
+            )
+            location.href = "petshop-products.html"
+        }
+    });
+  }
