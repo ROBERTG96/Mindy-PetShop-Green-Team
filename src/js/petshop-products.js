@@ -34,65 +34,60 @@ const cardsContainerJuguetes = document.getElementById("cards-container-juguetes
 // TEMPLATE FARMACIA
 function getProductsMedicamentos(Medicamentos) {
     Medicamentos.forEach((medicamento) => {
-        let card = document.createElement("div");
-        card.className = "col-md-3 mb-4";
-        card.innerHTML = `
-    <div class="card rounded shadow h-100">
-    <img src="${medicamento.imagen}" onclick="detalleProducto('${medicamento._id}')" class="card-img-top" alt="${medicamento.nombre}">
-    <div class="card-body color_primary text-light mb-3">
-        <div class="row">
-            <span class="card-subtitle font-weight-bold mb-3"><b> ${medicamento.nombre}</b></span>
+                let card = document.createElement("div");
+                card.className = "col-md-4 mb-4";
+                card.innerHTML = `
+        <div class="card shadow-sm h-100">
+          <div class="card-img-container">
+            <img src="${medicamento.imagen}" class="card-img img-card-product" alt="${medicamento.nombre}">
+          </div>
+          <div class="card-body">
+            <p class="card-title">${medicamento.nombre}</p>
+           
+          </div>
+          <div class="card-footer">
+            <div class="container-price-stock d-flex justify-content-between mb-3">
+              <p class="card-text fw-bolder fs-6 m-0"><i class="bi bi-currency-dollar"></i>${medicamento.precio}</p>
+              ${medicamento.stock < 5 ? (
+                `<p class="text-danger fw-4 text-last-units mb-0"><i class="bi bi-box-seam-fill"></i> ¡Últimas unidades! (${medicamento.stock})</p>`
+              ) : (
+                `<p class="card-text">${medicamento.stock} unidades disponibles</p>`
+              )}
+            </div>
+            <a class="btn btn-outline form-control" onclick="agregarAlCarrito('${medicamento._id}')"><i class="fas fa-shopping-cart"></i>Agregar al carrito</a>
+          </div>
         </div>
-        <div class="row mb-3">
-            <p class="card-text mb-1">${medicamento.descripcion}</p>
-        </div>
-    </div>
-    <div class="p-3">
-        <p class="success"><i class="fas fa-tags"></i> ${medicamento.tipo}</p>
-        <p class="success"><i class="bi bi-bag-check-fill"></i> Stock Disponible</p>
-        ${medicamento.stock < 5 ? (
-                `<p class="sucess_dark"><i class="bi bi-box-seam-fill"></i><b> Últimas unidades! (${medicamento.stock})</b></p>`
-            ) : (
-                `<p class="success"><i class="bi bi-box-seam-fill"></i><b> ${medicamento.stock}</b></p>`
-            )}
-        <p class="success"><i class="bi bi-currency-dollar"></i><b>${medicamento.precio}</b></p>
-        <a class="btn btn-outline form-control mt-3" onclick="agregarAlCarrito('${medicamento._id}')"><i class="fas fa-shopping-cart"></i> Add to
-            Cart</a>
-      </div>
-    </div>
-    `;
-        cardsContainerMedicamentos.appendChild(card);
+      `;
+      cardsContainerMedicamentos.appendChild(card);
     });
-}
+  }
+  
 // TEMPLATE JUGUETES
 function getProductsJuguetes(Juguetes) {
     Juguetes.forEach((Juguete) => {
         const card = document.createElement("div");
-        card.className = "col-md-3 mb-4";
+        card.className = "col-md-4 mb-4";
         card.innerHTML = `
-    <div class="card rounded shadow h-100">
-    <img src="${Juguete.imagen}" onclick="detalleProducto('${Juguete._id}')" class="card-img-top" alt="${Juguete.nombre}">
-    <div class="card-body color_primary text-light mb-3">
-        <div class="row">
-            <span class="card-subtitle font-weight-bold mb-3"><b> ${Juguete.nombre}</b></span>
+        <div class="card shadow-sm h-100">
+        <div class="card-img-container">
+          <img src="${Juguete.imagen}" class="card-img img-card-product" alt="${Juguete.nombre}">
         </div>
-        <div class="row mb-3">
-            <p class="card-text mb-1">${Juguete.descripcion}</p>
+        <div class="card-body">
+          <p class="card-title">${Juguete.nombre}</p>
+         
         </div>
-    </div>
-    <div class="p-3">
-        <p class="success"><i class="fas fa-tags"></i> ${Juguete.tipo}</p>
-        <p class="success"><i class="bi bi-bag-check-fill"></i> Stock Disponible</p>
-        ${Juguete.stock < 5 ? (
-                `<p class="sucess_dark"><i class="bi bi-box-seam-fill"></i><b> Últimas unidades! (${Juguete.stock})</b></p>`
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+            <p class="card-text fw-bolder fs-6"><i class="bi bi-currency-dollar"></i>${Juguete.precio}</p>
+            ${Juguete.stock < 5 ? (
+              `<p class="text-danger fw-4 text-last-units"><i class="bi bi-box-seam-fill"></i> ¡Últimas unidades! (${Juguete.stock})</p>`
             ) : (
-                `<p class="success"><i class="bi bi-box-seam-fill"></i><b> ${Juguete.stock}</b></p>`
+              `<p class="card-text">${Juguete.stock} unidades disponibles</p>`
             )}
-        <p class="success"><i class="bi bi-currency-dollar"></i><b>${Juguete.precio}</b></p>
-        <a  class="btn btn-outline form-control mt-3" onclick="agregarAlCarrito('${Juguete._id}')"><i class="fas fa-shopping-cart"></i> Add to
-            Cart</a>
+          </div>
+          <a class="btn btn-outline form-control" onclick="agregarAlCarrito('${Juguete._id}')"><i class="fas fa-shopping-cart"></i>Agregar al carrito</a>
+        </div>
       </div>
-    </div>
     `;
         cardsContainerJuguetes.appendChild(card);
     });
@@ -194,7 +189,6 @@ const mostrarCarrito = () => {
     precioTotal.textContent = carrito.reduce((acc, prod) => acc + parseFloat(prod.cantidad) * parseFloat(prod.precio), 0)
 
     numItemsCarritox1.textContent = carrito.length;
-    numItemsCarritox2.textContent = carrito.length;
     numItemsCarritox3.textContent = carrito.length;
     numItemsCarritox4.textContent = carrito.length;
 
@@ -605,53 +599,6 @@ function detalleProducto(id) {
     procesarPedido();
 }
 
-function mostrarDetalleVenta() {
-    const tablaVenta = document.getElementById("lista-compra");
-    const tbody = tablaVenta.querySelector("tbody");
-    const filasAnteriores = tbody.querySelectorAll("tr");
-    filasAnteriores.forEach((fila) => fila.remove());
-
-    let total = 0;
-
-    carrito.forEach((producto) => {
-        const fila = document.createElement("tr");
-        const imagenCelda = document.createElement("td");
-        const imagen = document.createElement("img");
-        imagen.src = producto.imagen;
-        imagenCelda.appendChild(imagen);
-        fila.appendChild(imagenCelda);
-        const nombreCelda = document.createElement("td");
-        nombreCelda.textContent = producto.nombre;
-        fila.appendChild(nombreCelda);
-        const precioCelda = document.createElement("td");
-        precioCelda.textContent = producto.precio;
-        fila.appendChild(precioCelda);
-        const cantidadCelda = document.createElement("td");
-        cantidadCelda.textContent = producto.cantidad;
-        fila.appendChild(cantidadCelda);
-        const subtotalCelda = document.createElement("td");
-        subtotalCelda.textContent = cantidadCelda.textContent * precioCelda.textContent;
-        fila.appendChild(subtotalCelda);
-        total += producto.subtotal;
-        tbody.appendChild(fila);
-    });
-
-    let ventaCarrito = carrito.map(venta => {
-        return venta.cantidad * venta.precio;
-    }).reduce((acc, val) => {
-        return acc + val;
-    })
-
-
-    console.log(ventaCarrito);
-
-    document.getElementById("totalProceso").textContent = ventaCarrito;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarDetalleVenta();
-});
-
 
 procesarCompra.addEventListener("click", () => {
     if (carrito.length === 0) {
@@ -665,32 +612,3 @@ procesarCompra.addEventListener("click", () => {
         location.href = "petshop-purchase.html";
     }
 });
-
-function finalizarCompra() {
-    // Mostrar una alerta de SweetAlert
-    Swal.fire({
-        title: '¿Está seguro de tu compra?',
-        text: '¿Está seguro de que quiere finalizar tu compra?',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, ¡estoy seguro!',
-        dangerMode: true,
-    }).then((vaciar) => {
-        // Si el usuario confirma la acción, vaciar el carrito
-        if (vaciar.isConfirmed) {
-            carrito = [];
-            mostrarCarrito();
-            Swal.fire(
-                '¡Compra exitosa!',
-                'Gracias por tu compra.',
-                'success'
-            )
-
-        }
-
-       location.href = 'petshop-products.html';
-
-    });
-}

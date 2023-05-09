@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
     <div class="modal fade" id="modalShoppingCart" tabindex="-1" aria-labelledby="shoppingCartModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -144,7 +143,7 @@
                                                             <th scope="col">Sub Total</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="cuerpoTabla">
 
                                                     </tbody>
                                                     <tfoot>
@@ -169,7 +168,7 @@
                                                     <a href="./petshop-products.html" class="btn btn-danger text-light btn-block" onclick="seguirComprando()">Seguir comprando</a>
                                                 </div>
                                                 <div class="col-xs-12 col-md-4">
-                                                    <a  class="btn btn-outline-success-send btn-block" id="button" onclick="finalizarCompra()">Finalizar Compra</a>
+                                                    <a class="btn btn-outline-success-send btn-block" id="finalizarCompra" onclick="finalizarCompra()">Finalizar Compra</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -248,7 +247,7 @@
             <script src="../src/js/template_scripts.js"></script>
             <script src="../src/js/petshop-login.js"></script>
             <!-- <script src="../src/js/petshop-shopping.js"></script> -->
-            <script src="./js/petshop-products.js"></script>
+            <script src="./js/petshop-shopping.js"></script>
 
 
             <script>

@@ -53,7 +53,7 @@ async function agregarAlCarrito(idProducto) {
         productoExistente.cantidad++;
     } else {
         let apiAux = await ApiFetch(urlApiShopping);
-        const item = apiAux?.products.find((prod) => prod._id === idProducto);
+        const item = apiAux.products.find((prod) => prod._id === idProducto);
         item.cantidad = 1;
         carrito.push(item);
     }
@@ -113,4 +113,86 @@ function guardarStorage() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+function mostrarDetalleVenta() {
+    const tablaVenta = document.getElementById("lista-compra");
+    const tbody = tablaVenta.querySelector("#cuerpoTabla");
+    const filasAnteriores = tbody.querySelectorAll("tr");
+    filasAnteriores.forEach((fila) => fila.remove());
 
+    let total = 0;
+
+    carrito.forEach((producto) => {
+        const fila = document.createElement("tr");
+        const imagenCelda = document.createElement("td");
+        const imagen = document.createElement("img");
+        imagen.src = producto.imagen;
+        imagenCelda.appendChild(imagen);
+        fila.appendChild(imagenCelda);
+        const nombreCelda = document.createElement("td");
+        nombreCelda.textContent = producto.nombre;
+        fila.appendChild(nombreCelda);
+        const precioCelda = document.createElement("td");
+        precioCelda.textContent = producto.precio;
+        fila.appendChild(precioCelda);
+        const cantidadCelda = document.createElement("td");
+        cantidadCelda.textContent = producto.cantidad;
+        fila.appendChild(cantidadCelda);
+        const subtotalCelda = document.createElement("td");
+        subtotalCelda.textContent = cantidadCelda.textContent * precioCelda.textContent;
+        fila.appendChild(subtotalCelda);
+        total += producto.subtotal;
+        tbody.appendChild(fila);
+    });
+    console.log(carrito);
+    let ventaCarrito = carrito.map(venta => {
+        return venta.cantidad * venta.precio;
+    }).reduce((acc, val) => {
+        return acc + val;
+    })
+
+
+    console.log(ventaCarrito);
+
+    document.getElementById("totalProceso").textContent = ventaCarrito;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    mostrarDetalleVenta();
+});
+
+function finalizarCompra() {
+    const tbody = document.getElementById("cuerpoTabla");
+    console.log(tbody);
+    // Mostrar una alerta de SweetAlert
+    Swal.fire({
+        title: '¿Está seguro de tu compra?',
+        text: '¿Está seguro de que quiere finalizar tu compra?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, ¡estoy seguro!',
+        dangerMode: true,
+    }).then((vaciar) => {
+        // Si el usuario confirma la acción, vaciar el carrito
+        if (vaciar.isConfirmed) {
+            carrito = [];
+            tbody.innerHTML = '';
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            /* mostrarCarrito(); */
+            Swal.fire({
+                title: '¡Compra exitosa!',
+                text: 'Gracias por tu compra.',
+                icon: 'success',
+                timer: 3000,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+            }).then(() => {
+                location.href = 'petshop-products.html';
+            });
+        }
+    });
+}
+
+mostrarDetalleVenta();
